@@ -1,5 +1,7 @@
 flask
-flask-cors
 torch
 torchvision
 pillow
+flask-cors
+gdown
+gunicorn

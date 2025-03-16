@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Configuration - LAN-Based</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+        
+        .audio-title {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-title:before, .audio-title:after {
+            margin: 0 10px;
+        }
+        
+        audio {
+            width: 70%;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+            background-color: #e6f4f9;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #4BB4DE;
+            border-radius: 50%;
+        }
+        
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: #3999C1;
+        }
+        
+        /* Audio player animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+        
+        .audio-container:hover {
+            animation: pulse 2s infinite;
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Info box */
+        .info-box {
+            background-color: #e6f4f9;
+            border-left: 5px solid #4BB4DE;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info-title {
+            color: #4BB4DE;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title:before {
+            content: "ℹ️";
+            margin-right: 10px;
+        }
+        
+        /* Warning box */
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title:before {
+            content: "⚠️";
+            margin-right: 10px;
+        }
+        
+        /* Network topology cards */
+        .topology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .topology-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .topology-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .topology-image {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        .topology-name {
+            color: #4BB4DE;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* Steps container */
+        .steps-container {
+            margin: 20px 0;
+            counter-reset: step-counter;
+        }
+        
+        .step-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4BB4DE;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            counter-increment: step-counter;
+        }
+        
+        .step-box:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #4BB4DE;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #4BB4DE;
+            margin-bottom: 10px;
+        }
+        
+        /* Component cards */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .component-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .component-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #4BB4DE;
+        }
+        
+        .component-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #4BB4DE;
+        }
+        
+        /* Table styling */
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .config-table th {
+            background-color: #4BB4DE;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .config-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .config-table tr:hover {
+            background-color: #e6f4f9;
+        }
+        
+        .config-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Network Configuration - LAN-Based</h1>
+
+            <div class="content">
+                <img src="lan.jpg" alt="LAN Network Configuration" class="image">
+                
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="lan.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">Introduction to LAN-Based Network Configuration</h2>
+                <p>A Local Area Network (LAN) is a network that connects computers and devices within a limited geographical area, such as a home, office, school, or data center. Proper LAN configuration is essential for ensuring reliable communication, optimal performance, and secure data transmission.</p>
+                
+                <p>This guide provides an in-depth look at LAN-based network configuration, covering essential components, setup procedures, security measures, and best practices.</p>
+
+                <h2 class="section-heading">1. Understanding LAN Architecture</h2>
+                
+                <h3 class="subsection-heading">1.1 Components of a LAN</h3>
+                <p>A LAN typically consists of the following components:</p>
+                
+                <div class="component-grid">
+                    <div class="component-card">
+                        <div class="component-icon">💻</div>
+                        <div class="component-name">Computers and Devices</div>
+                        <p>Workstations, servers, network-attached storage (NAS), and printers.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🔌</div>
+                        <div class="component-name">Network Interface Cards</div>
+                        <p>Hardware components enabling wired or wireless network connectivity.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🔄</div>
+                        <div class="component-name">Switches</div>
+                        <p>Layer 2 devices that connect multiple devices within a LAN and facilitate efficient data forwarding.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🌐</div>
+                        <div class="component-name">Routers</div>
+                        <p>Layer 3 devices used to connect different LANs or link the LAN to external networks like the internet.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">📡</div>
+                        <div class="component-name">Access Points</div>
+                        <p>Extend wireless coverage within a LAN.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🔒</div>
+                        <div class="component-name">Firewall and Security</div>
+                        <p>Provide network security by controlling traffic and blocking unauthorized access.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🖥️</div>
+                        <div class="component-name">Servers</div>
+                        <p>Dedicated systems that provide centralized services like DHCP, DNS, file sharing, and authentication.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🔌</div>
+                        <div class="component-name">Cabling</div>
+                        <p>Ethernet cables (Cat5e, Cat6, Cat7) for wired connections, or wireless access points for Wi-Fi networks.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">1.2 LAN Topologies</h3>
+                <p>LANs can be structured in different topologies, each with distinct advantages:</p>
+                
+                <div class="topology-grid">
+                    <div class="topology-card">
+                        <h3 class="topology-name">Star Topology</h3>
+                        <p>All devices connect to a central switch, providing easy fault isolation but increasing dependency on the central switch.</p>
+                    </div>
+                    
+                    <div class="topology-card">
+                        <h3 class="topology-name">Bus Topology</h3>
+                        <p>Devices share a single communication backbone; cost-effective but prone to collisions.</p>
+                    </div>
+                    
+                    <div class="topology-card">
+                        <h3 class="topology-name">Ring Topology</h3>
+                        <p>Devices connect in a loop, with data passing in one direction; improves redundancy but has complex fault detection.</p>
+                    </div>
+                    
+                    <div class="topology-card">
+                        <h3 class="topology-name">Mesh Topology</h3>
+                        <p>Every device connects to multiple others, ensuring redundancy but increasing costs.</p>
+                    </div>
+                    
+                    <div class="topology-card">
+                        <h3 class="topology-name">Hybrid Topology</h3>
+                        <p>A combination of two or more topologies to improve efficiency and reliability.</p>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">2. LAN Configuration Steps</h2>
+                
+                <h3 class="subsection-heading">2.1 Planning the Network</h3>
+                <div class="info-box">
+                    <div class="info-title">Network Planning Considerations</div>
+                    <p>Before configuring a LAN, consider the following:</p>
+                    <ul>
+                        <li><strong>Network Purpose:</strong> Determine the network's function, such as VoIP communication, file sharing, or cloud connectivity.</li>
+                        <li><strong>Device Count:</strong> Estimate the number of workstations, servers, and mobile devices that will connect.</li>
+                        <li><strong>IP Addressing Scheme:</strong> Choose between static and dynamic IP allocation.</li>
+                        <li><strong>Security Policies:</strong> Establish security measures like firewalls, encryption, and VLAN segmentation.</li>
+                        <li><strong>Bandwidth Requirements:</strong> Plan for network load based on applications and services.</li>
+                    </ul>
+                </div>
+                
+
+                
+                <h3 class="subsection-heading">2.2 Configuring the Network Hardware</h3>
+                <div class="steps-container">
+                    <div class="step-box">
+                        <div class="step-title">Connecting Devices</div>
+                        <p>Use Ethernet cables to connect computers, switches, and routers.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Powering Up Equipment</div>
+                        <p>Ensure all network devices are properly powered and operational.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Setting Up Switches</div>
+                        <p>Configure managed switches for VLAN segmentation, link aggregation, and port security.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Configuring Wireless Access Points</div>
+                        <p>Position WAPs strategically to ensure optimal Wi-Fi coverage.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Testing Connectivity</div>
+                        <p>Verify connections between devices using tools like ping and traceroute.</p>
+                    </div>
+                </div>
+                
+                
+                <h3 class="subsection-heading">2.3 IP Addressing and Subnetting</h3>
+                <ul>
+                    <li><strong>Static IP Configuration:</strong> Assign fixed IP addresses for critical devices like servers and printers.</li>
+                    <li><strong>Dynamic IP Configuration (DHCP):</strong> Set up a DHCP server to automatically assign IPs.</li>
+                    <li><strong>Subnetting:</strong> Divide the network into smaller subnets to optimize traffic flow and security.</li>
+                    <li><strong>Default Gateway Configuration:</strong> Ensure devices have the correct gateway for external connectivity.</li>
+                    <li><strong>DNS Setup:</strong> Configure DNS servers for resolving domain names to IP addresses.</li>
+                </ul>
+                
+                <div class="info-box">
+                    <div class="info-title">Common Private IP Address Ranges</div>
+                    <table class="config-table">
+                        <tr>
+                            <th>Class</th>
+                            <th>Range</th>
+                            <th>Subnet Mask</th>
+                            <th>Common Use</th>
+                        </tr>
+                        <tr>
+                            <td>Class A</td>
+                            <td>10.0.0.0 - 10.255.255.255</td>
+                            <td>255.0.0.0</td>
+                            <td>Large enterprise networks</td>
+                        </tr>
+                        <tr>
+                            <td>Class B</td>
+                            <td>172.16.0.0 - 172.31.255.255</td>
+                            <td>255.255.0.0</td>
+                            <td>Medium-sized networks</td>
+                        </tr>
+                        <tr>
+                            <td>Class C</td>
+                            <td>192.168.0.0 - 192.168.255.255</td>
+                            <td>255.255.255.0</td>
+                            <td>Small networks, home networks</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+                <h3 class="subsection-heading">2.4 Configuring Routers and Firewalls</h3>
+                <ul>
+                    <li><strong>Routing Configuration:</strong> Define static or dynamic routing protocols (RIP, OSPF, EIGRP).</li>
+                    <li><strong>NAT (Network Address Translation):</strong> Enable private IP address devices to access public networks.</li>
+                    <li><strong>Firewall Rules:</strong> Implement Access Control Lists (ACLs) and Intrusion Prevention Systems (IPS) to restrict unauthorized access.</li>
+                    <li><strong>VPN Configuration:</strong> Set up Virtual Private Networks for secure remote access.</li>
+                </ul>
+                
+                
+                <h3 class="subsection-heading">2.5 Wireless LAN (WLAN) Configuration</h3>
+                <div class="steps-container">
+                    <div class="step-box">
+                        <div class="step-title">SSID Configuration</div>
+                        <p>Define and broadcast secure network names.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Security Protocols</div>
+                        <p>Enable WPA3 or WPA2 encryption.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">MAC Address Filtering</div>
+                        <p>Restrict access to approved devices.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Channel Optimization</div>
+                        <p>Reduce interference by selecting optimal Wi-Fi channels.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Access Control</div>
+                        <p>Implement authentication via RADIUS or LDAP.</p>
+                    </div>
+                </div>
+                
+
+                <h2 class="section-heading">3. Network Management and Monitoring</h2>
+                
+                <h3 class="subsection-heading">3.1 Network Monitoring Tools</h3>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <div class="component-icon">📊</div>
+                        <div class="component-name">Ping and Traceroute</div>
+                        <p>Basic utilities for checking connectivity.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">📈</div>
+                        <div class="component-name">SNMP</div>
+                        <p>Simple Network Management Protocol for monitoring network health.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🔍</div>
+                        <div class="component-name">Wireshark</div>
+                        <p>Captures network traffic for analysis.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">📉</div>
+                        <div class="component-name">NetFlow & sFlow</div>
+                        <p>Provides traffic flow analytics.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">📡</div>
+                        <div class="component-name">Zabbix, PRTG, Nagios</div>
+                        <p>Comprehensive network monitoring solutions.</p>
+                    </div>
+                </div>
+                
+                
+                <h3 class="subsection-heading">3.2 Performance Optimization</h3>
+                <ul>
+                    <li><strong>Load Balancing:</strong> Distribute network traffic across multiple paths.</li>
+                    <li><strong>Bandwidth Management:</strong> Prioritize critical applications with Quality of Service (QoS).</li>
+                    <li><strong>Redundant Links:</strong> Use Spanning Tree Protocol (STP) to prevent loops.</li>
+                    <li><strong>Regular Firmware Updates:</strong> Keep hardware up to date.</li>
+                </ul>
+                
+
+
+                <h2 class="section-heading">4. Security Best Practices for LANs</h2>
+                
+                <h3 class="subsection-heading">4.1 User Authentication and Access Control</h3>
+                <div class="info-box">
+                    <div class="info-title">Authentication Methods</div>
+                    <ul>
+                        <li><strong>Centralized Authentication:</strong> Use Active Directory (AD), RADIUS, or LDAP.</li>
+                        <li><strong>Role-Based Access Control (RBAC):</strong> Limit access based on user roles.</li>
+                        <li><strong>Multi-Factor Authentication (MFA):</strong> Add extra security layers.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">4.2 Encryption and Secure Communication</h3>
+                <ul>
+                    <li><strong>End-to-End Encryption:</strong> Use IPSec or SSL/TLS.</li>
+                    <li><strong>Secure Protocols:</strong> Prefer SFTP over FTP, HTTPS over HTTP.</li>
+                    <li><strong>Wireless Security:</strong> Enforce WPA3 and disable WPS.</li>
+                </ul>
+                
+                <h3 class="subsection-heading">4.3 Regular Security Audits</h3>
+                <div class="steps-container">
+                    <div class="step-box">
+                        <div class="step-title">Penetration Testing</div>
+                        <p>Identify network vulnerabilities.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Firewall and Antivirus Updates</div>
+                        <p>Keep security software up to date.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-title">Network Logs & Incident Response</div>
+                        <p>Maintain logs and develop an incident response plan.</p>
+                    </div>
+                </div>
+                
+
+                <h2 class="section-heading">5. Advanced LAN Features</h2>
+                
+                <h3 class="subsection-heading">5.1 VLAN Configuration</h3>
+                <div class="warning-box">
+                    <div class="warning-title">VLAN Implementation</div>
+                    <ul>
+                        <li><strong>Creating VLANs:</strong> Segment network traffic using VLANs to improve security and efficiency.</li>
+                        <li><strong>Inter-VLAN Routing:</strong> Configure Layer 3 switches or routers to allow communication between VLANs.</li>
+                        <li><strong>VLAN Tagging:</strong> Use IEEE 802.1Q for VLAN tagging.</li>
+                    </ul>
+                </div>
+                
+                
+                <h3 class="subsection-heading">5.2 High Availability and Redundancy</h3>
+                <ul>
+                    <li><strong>Failover Mechanisms:</strong> Use HSRP or VRRP for router redundancy.</li>
+                    <li><strong>Link Aggregation:</strong> Combine multiple network links for increased bandwidth and fault tolerance.</li>
+                    <li><strong>Backup Power Supplies:</strong> Use UPS and redundant power supplies.</li>
+                </ul>
+                
+                
+                <h3 class="subsection-heading">5.3 Network Virtualization</h3>
+                <ul>
+                    <li><strong>SDN (Software-Defined Networking):</strong> Centralized control of network traffic.</li>
+                    <li><strong>VLAN-to-VXLAN Migration:</strong> Extend VLANs over wide networks.</li>
+                </ul>
+                
+
+                <h2 class="section-heading">Conclusion</h2>
+                <p>LAN configuration is a critical aspect of networking that requires careful planning, setup, and management. A well-configured LAN ensures seamless communication, security, and efficiency. By implementing best practices in network design, addressing security concerns, and optimizing performance, organizations can build a resilient LAN infrastructure that supports their business or institutional needs.</p>
+                
+                <div class="info-box">
+                    <div class="info-title">Key Takeaways</div>
+                    <ul>
+                        <li>Proper planning is essential before implementing a LAN.</li>
+                        <li>Choose the right topology based on your organization's needs.</li>
+                        <li>Implement appropriate security measures to protect your network.</li>
+                        <li>Regularly monitor and maintain your network for optimal performance.</li>
+                        <li>Consider advanced features like VLANs and redundancy for enterprise environments.</li>
+                        <li>Keep all network devices and software up to date with the latest security patches.</li>
+                        <li>Document your network configuration for easier troubleshooting and knowledge transfer.</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Common Pitfalls to Avoid</div>
+                    <ul>
+                        <li>Neglecting to change default passwords on network devices.</li>
+                        <li>Implementing complex networks without proper documentation.</li>
+                        <li>Overlooking physical security of network equipment.</li>
+                        <li>Failing to test backup and recovery procedures.</li>
+                        <li>Using outdated security protocols (like WEP for wireless networks).</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">Further Resources</h3>
+                <ul>
+                    <li>Cisco Networking Academy: <a href="https://www.netacad.com/">https://www.netacad.com/</a></li>
+                    <li>CompTIA Network+ Certification: <a href="https://www.comptia.org/certifications/network">https://www.comptia.org/certifications/network</a></li>
+                    <li>Wireshark Network Protocol Analyzer: <a href="https://www.wireshark.org/">https://www.wireshark.org/</a></li>
+                    <li>RFC Documents for Network Standards: <a href="https://www.ietf.org/standards/rfcs/">https://www.ietf.org/standards/rfcs/</a></li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
+
+
+                        

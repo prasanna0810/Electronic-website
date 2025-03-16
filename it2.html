@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assembly and Disassembly of Computer Hardware</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+        
+        .audio-title {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-title:before, .audio-title:after {
+            margin: 0 10px;
+        }
+        
+        audio {
+            width: 70%;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+            background-color: #e6f4f9;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #4BB4DE;
+            border-radius: 50%;
+        }
+        
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: #3999C1;
+        }
+        
+        /* Audio player animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+        
+        .audio-container:hover {
+            animation: pulse 2s infinite;
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Step-by-step styling */
+        .step-container {
+            margin: 30px 0;
+            border-left: 3px solid #4BB4DE;
+            padding-left: 20px;
+        }
+        
+        .step {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .step:before {
+            content: "";
+            position: absolute;
+            left: -29px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #4BB4DE;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #4BB4DE;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        /* Tool grid */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tool-item {
+            background: #f5f7fa;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .tool-icon {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #4BB4DE;
+        }
+        
+        /* Warning box */
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title:before {
+            content: "⚠️";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Assembly and Disassembly of Computer Hardware</h1>
+
+            <div class="content">
+                <img src="it2.jpg" alt="Computer Assembly" class="image">
+                
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="it2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">Introduction</h2>
+                <p>Understanding the assembly and disassembly of computer hardware is fundamental for IT professionals, hardware technicians, and enthusiasts. This guide provides a step-by-step approach on assembling and disassembling a computer system, covering essential tools, safety precautions, and best practices. This knowledge is crucial for maintenance, troubleshooting, and upgrading computer systems efficiently.</p>
+
+                <h2 class="section-heading">Section 1: Tools and Safety Precautions</h2>
+                
+                <h3 class="subsection-heading">Tools Required</h3>
+                <p>Before starting, ensure you have the following tools:</p>
+                
+                <div class="tool-grid">
+                    <div class="tool-item">
+                        <span class="tool-icon">🔧</span>
+                        <span>Screwdrivers (Phillips and flat-head)</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">⚡</span>
+                        <span>Anti-static wrist strap</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">🧴</span>
+                        <span>Thermal paste</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">🔗</span>
+                        <span>Cable ties</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">🔍</span>
+                        <span>Tweezers</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">💨</span>
+                        <span>Compressed air canister</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">📏</span>
+                        <span>Multimeter</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">🗜️</span>
+                        <span>Pliers</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">🔦</span>
+                        <span>Flashlight</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-icon">🔨</span>
+                        <span>Plastic prying tools</span>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">Safety Precautions</h3>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Important Safety Warning</div>
+                    <p>Always prioritize safety when working with computer hardware. Electrical components can retain charge even when unplugged, and improper handling can lead to personal injury or damage to components.</p>
+                </div>
+                
+                <ul>
+                    <li><strong>Turn Off and Unplug the Computer:</strong> Ensure that the power is completely turned off before opening the case to prevent electrical hazards.</li>
+                    <li><strong>Use an Anti-static Wrist Strap:</strong> Always wear an anti-static strap and ground yourself to avoid damaging sensitive electronics through static electricity.</li>
+                    <li><strong>Work on a Non-Conductive Surface:</strong> Avoid working on carpets or metal surfaces that may conduct static electricity and damage components.</li>
+                    <li><strong>Organize Components and Screws:</strong> Keep track of screws and small parts by using a labeled container or magnetic mat to prevent misplacement.</li>
+                    <li><strong>Handle Components by the Edges:</strong> Avoid touching circuit boards and pins to prevent contamination and static damage.</li>
+                    <li><strong>Ensure Proper Ventilation:</strong> Work in a well-ventilated area to prevent overheating and avoid inhaling dust particles.</li>
+                    <li><strong>Double-Check Connections:</strong> When reassembling, ensure all components are correctly seated and connected before powering up the system.</li>
+                </ul>
+
+                <h2 class="section-heading">Section 2: Disassembly of a Computer</h2>
+                
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-title">Step 1: Preparing for Disassembly</div>
+                        <ul>
+                            <li>Shut down the computer and unplug all cables, including power, video, and peripherals.</li>
+                            <li>Ground yourself using an anti-static strap to prevent damage to sensitive components.</li>
+                            <li>Remove any external devices such as USB drives, external hard disks, and peripherals.</li>
+                            <li>Place the computer on a clean, flat, non-conductive surface.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 2: Removing the Case</div>
+                        <ul>
+                            <li>Locate the screws securing the side panel (usually found at the back of the case).</li>
+                            <li>Unscrew the side panel screws and slide the panel off gently.</li>
+                            <li>If the case has a latch or lock mechanism, disengage it before removing the panel.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 3: Removing Internal Components</div>
+                        
+                        <h4 class="subsection-heading">Power Supply Unit (PSU)</h4>
+                        <ul>
+                            <li>Disconnect all power cables from the motherboard, CPU, GPU, and storage devices.</li>
+                            <li>Unscrew the PSU from the case and carefully slide it out.</li>
+                        </ul>
+                        
+                        <h4 class="subsection-heading">Storage Devices (HDD/SSD)</h4>
+                        <ul>
+                            <li>Identify the storage devices mounted in the drive bays.</li>
+                            <li>Unscrew or unlatch the drive from its bay.</li>
+                            <li>Disconnect the SATA power and data cables before removing the drive.</li>
+                        </ul>
+                        
+                        <h4 class="subsection-heading">RAM (Memory Modules)</h4>
+                        <ul>
+                            <li>Press down on the retention clips on either side of the RAM module.</li>
+                            <li>Gently pull the RAM stick out of its slot without touching the gold contacts.</li>
+                        </ul>
+                        
+                        <h4 class="subsection-heading">Graphics Card (GPU) [If Present]</h4>
+                        <ul>
+                            <li>Unscrew the bracket securing the GPU to the case.</li>
+                            <li>Unlock the PCIe slot latch by pressing or pulling the release mechanism.</li>
+                            <li>Carefully lift the GPU out of the PCIe slot and disconnect any power cables.</li>
+                        </ul>
+                        
+                        <h4 class="subsection-heading">Processor (CPU) and Cooler</h4>
+                        <ul>
+                            <li>Unclip or unscrew the CPU cooler and carefully lift it off.</li>
+                            <li>Clean off any thermal paste residue using isopropyl alcohol and a lint-free cloth.</li>
+                            <li>Unlock the CPU socket lever and carefully remove the CPU, handling it by the edges.</li>
+                        </ul>
+                        
+                        <h4 class="subsection-heading">Motherboard</h4>
+                        <ul>
+                            <li>Disconnect all power and data cables from the motherboard.</li>
+                            <li>Unscrew the motherboard from the case standoffs.</li>
+                            <li>Lift it out carefully, ensuring no cables or components are left connected.</li>
+                        </ul>
+                        
+                        <h4 class="subsection-heading">Cooling Fans and Other Peripherals</h4>
+                        <ul>
+                            <li>Unscrew and detach case fans, ensuring all connectors are unplugged.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">Section 3: Assembly of a Computer</h2>
+                
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-title">Step 1: Preparing for Assembly</div>
+                        <ul>
+                            <li>Place the case on a stable surface.</li>
+                            <li>Organize all components and screws for easy access.</li>
+                            <li>Attach the anti-static wrist strap before handling components.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 2: Installing the Power Supply Unit (PSU)</div>
+                        <ul>
+                            <li>Slide the PSU into its designated slot.</li>
+                            <li>Secure it with screws to prevent movement.</li>
+                            <li>Route and organize the power cables neatly to avoid clutter.</li>
+                        </ul>
+                        <img src="psu_installation.jpg" alt="PSU Installation" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 3: Installing the Motherboard</div>
+                        <ul>
+                            <li>Align the motherboard with the standoffs and ensure all ports line up correctly.</li>
+                            <li>Secure the motherboard using screws without over-tightening.</li>
+                            <li>Connect the 24-pin power connector and additional CPU power connector from the PSU.</li>
+                        </ul>
+                        <img src="motherboard_installation.jpg" alt="Motherboard Installation" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 4: Installing the Processor (CPU) and Cooler</div>
+                        <ul>
+                            <li>Open the CPU socket lever and align the CPU with the marker on the socket.</li>
+                            <li>Close the socket lever to secure the CPU in place.</li>
+                            <li>Apply a small amount of thermal paste (a pea-sized dot) on the CPU surface.</li>
+                            <li>Attach the CPU cooler and secure it with the retention mechanism.</li>
+                        </ul>
+                        <img src="cpu_installation.jpg" alt="CPU Installation" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 5: Installing the RAM Modules</div>
+                        <ul>
+                            <li>Align the RAM stick with the slot, ensuring the notch matches the key in the slot.</li>
+                            <li>Press down firmly until the clips lock into place on both sides.</li>
+                        </ul>
+                        <img src="ram_installation.jpg" alt="RAM Installation" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 6: Installing the Storage Drives</div>
+                        <ul>
+                            <li>Mount the HDD/SSD into its designated bay or M.2 slot.</li>
+                            <li>Secure the drive with screws or retention brackets.</li>
+                            <li>Connect SATA data and power cables to the drive and motherboard.</li>
+                        </ul>
+                        <img src="storage_installation.jpg" alt="Storage Installation" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 7: Installing the Graphics Card (GPU) [If Required]</div>
+                        <ul>
+                            <li>Align the GPU with the PCIe slot and press down firmly until the latch clicks.</li>
+                            <li>Secure the bracket with screws to keep the GPU in place.</li>
+                            <li>Connect the necessary power cables from the PSU.</li>
+                        </ul>
+                        <img src="gpu_installation.jpg" alt="GPU Installation" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 8: Connecting Cables</div>
+                        <ul>
+                            <li><strong>Power Cables:</strong> Connect PSU power to the motherboard, CPU, and storage drives.</li>
+                            <li><strong>Data Cables:</strong> Connect SATA cables between storage drives and motherboard.</li>
+                            <li><strong>Front Panel Cables:</strong> Connect power button, reset button, and LED indicators.</li>
+                            <li><strong>Cooling Fans:</strong> Connect chassis fans to appropriate motherboard headers.</li>
+                        </ul>
+                        <img src="cable_connections.jpg" alt="Cable Connections" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 9: Cable Management</div>
+                        <ul>
+                            <li>Use cable ties to bundle cables and improve airflow inside the case.</li>
+                            <li>Route cables neatly behind the motherboard tray if possible.</li>
+                        </ul>
+                        <img src="cable_management.jpg" alt="Cable Management" class="image">
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 10: Closing the Case</div>
+                        <ul>
+                            <li>Reattach the side panel and secure it with screws.</li>
+                            <li>Ensure no loose screws or tools are left inside.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 11: Testing the System</div>
+                        <ul>
+                            <li>Plug in the power cable and turn on the system.</li>
+                            <li>Check for POST (Power-On Self-Test) on the screen.</li>
+                            <li>If the system does not boot, troubleshoot connections and verify component placement.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Troubleshooting Tips</div>
+                    <ul>
+                        <li>If the computer doesn't power on, check the power supply connections and ensure the power switch is on.</li>
+                        <li>If there's no display, verify that the monitor is connected to the correct port (GPU or motherboard).</li>
+                        <li>For beep codes during startup, consult your motherboard manual to identify the issue.</li>
+                        <li>If components are not recognized, ensure they are properly seated and connected.</li>
+                    </ul>
+                </div>
+
+                <h2 class="section-heading">Conclusion</h2>
+                <p>Proper knowledge of assembling and disassembling a computer system is essential for maintenance, troubleshooting, and upgrading hardware. Following safety precautions, handling components carefully, and organizing cables efficiently contribute to the longevity and performance of a computer system.</p>
+                
+                <p>Remember that practice makes perfect when it comes to computer assembly. The more systems you work with, the more comfortable and efficient you'll become with the process. Always refer to component manuals for specific installation instructions, as different manufacturers may have unique requirements for their hardware.</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
+

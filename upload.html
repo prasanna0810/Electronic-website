@@ -159,7 +159,7 @@
                 document.getElementById("result-text").textContent = "Processing...";
                 document.getElementById("description-text").textContent = "";
     
-                let response = await fetch("https://electronic-website.onrender.com/upload", {
+                let response = await fetch("https://electronic-website.onrender.com/predict", {
                     method: "POST",
                     body: formData
                 });

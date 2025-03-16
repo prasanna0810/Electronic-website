@@ -17,8 +17,17 @@ num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 34)  # Update class count
 
 # Download model from Google Drive
-import gdown
-gdown.download("https://drive.google.com/uc?id=1a4CRfgWJ1Rw5zogLKEVlXaZoI-SFdVwI", "best_model.pth", quiet=False)
+import os
+
+MODEL_PATH = "best_model.pth"
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model...")
+    import gdown
+    gdown.download("https://drive.google.com/uc?id=1a4CRfgWJ1Rw5zogLKEVlXaZoI-SFdVwI", MODEL_PATH, quiet=False)
+
+print("Model loaded successfully.")
+
 
 model.load_state_dict(torch.load("best_model.pth", map_location=device))
 model.to(device)

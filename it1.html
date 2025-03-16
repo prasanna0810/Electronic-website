@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identification of Computer Components</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+        
+        .audio-title {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-title:before, .audio-title:after {
+            margin: 0 10px;
+        }
+        
+        audio {
+            width: 70%;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+            background-color: #e6f4f9;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #4BB4DE;
+            border-radius: 50%;
+        }
+        
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: #3999C1;
+        }
+        
+        /* Audio player animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+        
+        .audio-container:hover {
+            animation: pulse 2s infinite;
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Component Grid */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .component-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .component-card h3 {
+            color: #4BB4DE;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #4BB4DE;
+            padding-bottom: 10px;
+        }
+        
+        .component-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Identification of Switching Mode Power Supply (SMPS), Hard Disk, RAM, and Motherboard</h1>
+
+            <div class="content">
+                <img src="it1.jpg" alt="Computer Components" class="image">
+                
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="computer_components.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">Introduction</h2>
+                <p>Understanding the core components of a computer system is essential for troubleshooting, upgrading, and assembling computing devices. This guide provides detailed information on identifying the Switching Mode Power Supply (SMPS), Hard Disk, RAM (Random Access Memory), and Motherboard. Each component plays a crucial role in system functionality, and their identification is vital for maintenance and repair.</p>
+                
+                <div class="component-grid">
+                    <div class="component-card">
+                        <h3>SMPS</h3>
+                        <img src="smps.jpg" alt="Switching Mode Power Supply">
+                        <p>Converts AC to DC power for computer components</p>
+                    </div>
+                    <div class="component-card">
+                        <h3>Hard Disk</h3>
+                        <img src="hard_disk.jpg" alt="Hard Disk Drive">
+                        <p>Stores data permanently even when power is off</p>
+                    </div>
+                    <div class="component-card">
+                        <h3>RAM</h3>
+                        <img src="ram.jpg" alt="Random Access Memory">
+                        <p>Temporary memory for fast data access by CPU</p>
+                    </div>
+                    <div class="component-card">
+                        <h3>Motherboard</h3>
+                        <img src="motherboard.jpg" alt="Motherboard">
+                        <p>Main circuit board connecting all components</p>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">1. Switching Mode Power Supply (SMPS)</h2>
+                
+                <h3 class="subsection-heading">1.1 What is SMPS?</h3>
+                <p>A Switching Mode Power Supply (SMPS) is an advanced power supply unit that converts high-voltage AC (Alternating Current) to low-voltage DC (Direct Current) required by computer components. Unlike traditional linear power supplies, SMPS employs high-frequency switching regulators, which improve efficiency and reduce power loss.</p>
+                
+                <h3 class="subsection-heading">1.2 Identifying an SMPS</h3>
+                <p><strong>Location:</strong> The SMPS is housed in the computer case, typically at the rear, either at the top or bottom.</p>
+                
+                <p><strong>Physical Features:</strong></p>
+                <ul>
+                    <li>A metallic enclosure with a cooling fan to dissipate heat</li>
+                    <li>A power input socket for the main AC power cable</li>
+                    <li>An ON/OFF switch (in some models)</li>
+                    <li>Various cables and connectors for different components</li>
+                    <li>A label indicating wattage, voltage ratings (+3.3V, +5V, +12V, etc.), and safety certifications</li>
+                </ul>
+                
+                <p><strong>Connectors and Their Purpose:</strong></p>
+                <ul>
+                    <li>24-pin ATX Connector – The main power supply for the motherboard</li>
+                    <li>4/8-pin CPU Connector – Powers the processor (CPU)</li>
+                    <li>SATA Power Connectors – Supplies power to hard drives and SSDs</li>
+                    <li>PCIe Power Connectors – Used for high-performance graphics cards</li>
+                    <li>Molex Connectors – Legacy connectors for older peripherals</li>
+                    <li>Berg Connector – Used for floppy disk drives (rare in modern PCs)</li>
+                </ul>
+                
+                <h3 class="subsection-heading">1.3 Types of SMPS</h3>
+                <ul>
+                    <li>ATX Power Supply – Standard for desktop computers, with multiple voltage rails</li>
+                    <li>SFX Power Supply – Smaller size for compact cases</li>
+                    <li>TFX Power Supply – Thin form factor for slim desktops</li>
+                </ul>
+                
+                <p><strong>Modular vs. Non-Modular:</strong></p>
+                <ul>
+                    <li>Modular SMPS – Allows detachment of unused cables, improving airflow</li>
+                    <li>Non-Modular SMPS – Fixed cables, commonly found in budget builds</li>
+                </ul>
+
+                <h2 class="section-heading">2. Hard Disk Drive (HDD) and Solid-State Drive (SSD)</h2>
+                
+                <h3 class="subsection-heading">2.1 What is a Hard Disk?</h3>
+                <p>A Hard Disk Drive (HDD) is an electromechanical data storage device that stores and retrieves digital data using magnetic storage. In contrast, a Solid-State Drive (SSD) utilizes NAND flash memory for superior speed and reliability.</p>
+                
+                <h3 class="subsection-heading">2.2 Identifying a Hard Disk</h3>
+                <p><strong>Location:</strong> Mounted inside the computer case, usually in a designated drive bay or on the motherboard (for M.2 SSDs).</p>
+                
+                <p><strong>Physical Features:</strong></p>
+                <ul>
+                    <li>HDDs are typically 3.5-inch (desktop) or 2.5-inch (laptop) rectangular metal casings with spinning platters inside.</li>
+                    <li>SSDs come in 2.5-inch SATA, M.2, or PCIe NVMe form factors, with no moving parts.</li>
+                    <li>A label indicates manufacturer details, storage capacity, and RPM (for HDDs).</li>
+                </ul>
+                
+                <p><strong>Connectors:</strong></p>
+                <ul>
+                    <li>SATA Data Connector – Transfers data to the motherboard</li>
+                    <li>SATA Power Connector – Powers the drive from the SMPS</li>
+                    <li>NVMe (M.2) Connector – Used for high-speed SSDs directly mounted on the motherboard</li>
+                    <li>IDE Connector – Found in older HDDs, replaced by SATA</li>
+                </ul>
+                
+                <h3 class="subsection-heading">2.3 Types of Storage Devices</h3>
+                <ul>
+                    <li>HDD (Hard Disk Drive) – Traditional, larger storage, slower speed (5400/7200 RPM)</li>
+                    <li>SSD (Solid-State Drive) – Faster, durable, low power consumption</li>
+                    <li>Hybrid Drives (SSHD) – Combines SSD speed with HDD capacity</li>
+                    <li>NVMe SSDs – High-speed, used for gaming and professional applications</li>
+                </ul>
+
+                <h2 class="section-heading">3. Random Access Memory (RAM)</h2>
+                
+                <h3 class="subsection-heading">3.1 What is RAM?</h3>
+                <p>RAM (Random Access Memory) is a volatile memory module that stores temporary data for quick access by the processor. It plays a critical role in multitasking and overall system performance.</p>
+                
+                <h3 class="subsection-heading">3.2 Identifying RAM</h3>
+                <p><strong>Location:</strong> Installed in RAM slots on the motherboard.</p>
+                
+                <p><strong>Physical Features:</strong></p>
+                <ul>
+                    <li>A long, thin circuit board with memory chips soldered onto it</li>
+                    <li>Notches ensuring correct insertion into the slot</li>
+                    <li>A label indicating type (DDR3, DDR4, DDR5), speed (MHz), and capacity (GB)</li>
+                </ul>
+                
+                <p><strong>Types of RAM:</strong></p>
+                <ul>
+                    <li>DDR3 – Older, slower, lower bandwidth</li>
+                    <li>DDR4 – Common in modern PCs</li>
+                    <li>DDR5 – Latest, highest bandwidth, used in high-performance systems</li>
+                </ul>
+                
+                <h3 class="subsection-heading">3.3 RAM Slots and Installation</h3>
+                <ul>
+                    <li>Desktop motherboards typically have two to four RAM slots.</li>
+                    <li>Color-coded slots indicate dual-channel support for improved performance.</li>
+                    <li>RAM modules must match in type, speed, and capacity for

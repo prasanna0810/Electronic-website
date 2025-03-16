@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inductors: Identification, Operation, Applications, and Testing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .formula {
+            font-style: italic;
+            margin: 15px 0;
+        }
+        .audio-container {
+           margin: 30px auto;
+           padding: 20px;
+           background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+           border-radius: 15px;
+           box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+           max-width: 600px;
+           text-align: center;
+           border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+
+        .audio-title {
+          color: #4BB4DE;
+          font-size: 20px;
+          margin-bottom: 15px;
+          font-weight: bold;
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .audio-title:before, .audio-title:after {
+          margin: 0 10px;
+        }
+
+       audio {
+         width: 70%;
+         height: 50px;
+         border-radius: 30px;
+         outline: none;
+         margin: 0 auto;
+         display: block;
+        }
+
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+         background-color: #e6f4f9;
+        }
+
+        audio::-webkit-media-controls-play-button {
+         background-color: #4BB4DE;
+         border-radius: 50%;
+        }
+
+        audio::-webkit-media-controls-play-button:hover {
+          background-color: #3999C1;
+        }
+
+       /* Audio player animation */
+        @keyframes pulse {
+         0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+         70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+         100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+
+       .audio-container:hover {
+           animation: pulse 2s infinite;
+           transform: translateY(-2px);
+           transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Inductors: Identification, Operation, Applications, and Testing</h1>
+
+            <div class="content">
+                <img src="indu.jpg" alt="Various types of inductors" class="image">
+
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="inductors.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">1. Introduction to Inductors</h2>
+                <p>Inductors are passive electrical components that store energy in a magnetic field when electrical current passes through them. They are widely used in electrical and electronic circuits for filtering, energy storage, and inductive coupling.</p>
+
+                <h3 class="subsection-heading">1.1 Definition</h3>
+                <p>An inductor is a coil of wire wound around a core material, which could be air, iron, or ferrite. It is characterized by its inductance, measured in Henries (H), which determines the ability of the coil to induce an electromotive force (EMF) when the current flowing through it changes.</p>
+
+                <h3 class="subsection-heading">1.2 Basic Construction</h3>
+                <ul>
+                    <li><strong>Wire Winding:</strong> Typically copper wire wound in a spiral or helical shape.</li>
+                    <li><strong>Core Material:</strong> Air, ferrite, iron, or laminated steel cores used to enhance inductance.</li>
+                    <li><strong>Encapsulation:</strong> Inductors may be enclosed in protective casings for durability.</li>
+                    <li><strong>Terminals:</strong> Leaded or surface-mount terminals for electrical connections.</li>
+                </ul>
+
+                <h3 class="subsection-heading">1.3 Fundamental Properties</h3>
+                <ul>
+                    <li><strong>Inductance (L):</strong> The ability of an inductor to oppose a change in current, measured in Henries (H).</li>
+                    <li><strong>Self-Inductance:</strong> The property by which an inductor induces a voltage in itself when the current changes.</li>
+                    <li><strong>Mutual Inductance:</strong> The ability of one inductor to induce voltage in another nearby inductor.</li>
+                    <li><strong>Energy Storage:</strong> Inductors store energy in the form of a magnetic field, given by the equation: 
+                        <p class="formula">E = ½ × L × I²</p>
+                        where E is energy in joules, L is inductance in henries, and I is current in amperes.
+                    </li>
+                </ul>
+
+                <h2 class="section-heading">2. Identification of Inductors</h2>
+                <p>Inductors come in various shapes, sizes, and types, and their values are indicated in different ways.</p>
+
+                <h3 class="subsection-heading">2.1 Color Coding and Markings</h3>
+                <ul>
+                    <li>Some inductors use a color band system, similar to resistors, to indicate inductance value.</li>
+                    <li>Others have numerical codes printed on them, denoting inductance in microhenries (µH) or millihenries (mH).</li>
+                    <li>Surface-mount inductors often have alphanumeric codes representing inductance and tolerance.</li>
+                </ul>
+
+                <h3 class="subsection-heading">2.2 Types of Inductors</h3>
+                <ul>
+                    <li><strong>Air-Core Inductors</strong> – No core material, used for high-frequency applications.</li>
+                    <li><strong>Iron-Core Inductors</strong> – Iron cores enhance inductance, used in power applications.</li>
+                    <li><strong>Ferrite-Core Inductors</strong> – Used in high-frequency circuits like radio-frequency (RF) applications.</li>
+                    <li><strong>Toroidal Inductors</strong> – Donut-shaped cores, offering high efficiency and low electromagnetic interference.</li>
+                    <li><strong>Variable Inductors</strong> – Adjustable inductance via a movable core or tap switches.</li>
+                    <li><strong>Chokes</strong> – Inductors used to block AC while allowing DC to pass.</li>
+                    <li><strong>Multilayer Inductors</strong> – Made by stacking multiple layers of conductor and dielectric material, used in miniaturized electronic circuits.</li>
+                </ul>
+
+                <h2 class="section-heading">3. Operation of Inductors</h2>
+                <p>Inductors function based on Faraday's Law of Electromagnetic Induction, which states that a changing current through a coil generates a voltage opposing the change.</p>
+
+                <h3 class="subsection-heading">3.1 Working Principle</h3>
+                <ul>
+                    <li>When current passes through an inductor, it generates a magnetic field around the coil.</li>
+                    <li>Any change in current induces a voltage (back EMF) that opposes the change, according to Lenz's Law.</li>
+                    <li>This property makes inductors effective for filtering signals, energy storage, and noise suppression.</li>
+                </ul>
+
+                <h3 class="subsection-heading">3.2 Inductive Reactance</h3>
+                <p>Inductors oppose AC due to their reactance, which is given by:</p>
+                <p class="formula">X<sub>L</sub> = 2πfL</p>
+                <p>where:</p>
+                <ul>
+                    <li>X<sub>L</sub> is the inductive reactance (Ohms),</li>
+                    <li>f is the frequency (Hz),</li>
+                    <li>L is the inductance (Henries).</li>
+                </ul>
+                <p>Higher frequencies increase reactance, making inductors useful for filtering high-frequency signals.</p>
+
+                <h3 class="subsection-heading">3.3 Energy Storage and Time Constant</h3>
+                <ul>
+                    <li>Inductors store energy in a magnetic field and release it when the current flow decreases.</li>
+                    <li>The time constant τ of an inductor in an RL circuit is given by:
+                        <p class="formula">τ = L/R</p>
+                        where R is the resistance in ohms.
+                    </li>
+                    <li>It defines how quickly an inductor responds to changes in current.</li>
+                </ul>
+
+                <h2 class="section-heading">4. Applications of Inductors</h2>
+
+                <h3 class="subsection-heading">4.1 Power Supply Filtering</h3>
+                <ul>
+                    <li>Used in power supplies to smooth fluctuations and remove high-frequency noise.</li>
+                    <li>Common in switched-mode power supplies (SMPS) and linear regulators.</li>
+                </ul>
+
+                <h3 class="subsection-heading">4.2 Transformers and Inductive Coupling</h3>
+                <ul>
+                    <li>Two or more inductors form a transformer, transferring energy through mutual inductance.</li>
+                    <li>Used in wireless charging, RF transmission, and signal isolation.</li>
+                </ul>
+
+                <h3 class="subsection-heading">4.3 Signal Processing and RF Applications</h3>
+                <ul>
+                    <li>Inductors, along with capacitors, form resonant circuits used in radios and oscillators.</li>
+                    <li>RF chokes block high-frequency signals while allowing DC to pass.</li>
+                </ul>
+
+                <h3 class="subsection-heading">4.4 Energy Storage in DC-DC Converters</h3>
+                <ul>
+                    <li>Used in boost, buck, and buck-boost converters for energy storage and transfer.</li>
+                    <li>Found in battery chargers, solar inverters, and automotive electronics.</li>
+                </ul>
+
+                <h3 class="subsection-heading">4.5 Inductive Sensors and Magnetic Applications</h3>
+                <ul>
+                    <li>Used in inductive proximity sensors to detect metallic objects.</li>
+                    <li>Found in automotive sensors, industrial automation, and security systems.</li>
+                </ul>
+
+                <h2 class="section-heading">5. Testing and Measurement of Inductors</h2>
+
+                <h3 class="subsection-heading">5.1 Using a Multimeter</h3>
+                <p><strong>Continuity Test</strong></p>
+                <ul>
+                    <li>Set the multimeter to resistance mode (Ω).</li>
+                    <li>A functioning inductor should show low resistance.</li>
+                    <li>If infinite resistance, the inductor is open.</li>
+                </ul>
+
+                <p><strong>Inductance Measurement</strong></p>
+                <ul>
+                    <li>Some digital multimeters (DMMs) have an inductance measurement mode.</li>
+                    <li>Measure and compare with the rated value.</li>
+                </ul>
+
+                <h3 class="subsection-heading">5.2 Using an LCR Meter</h3>
+                <ul>
+                    <li>Measures Inductance (L), Capacitance (C), and Resistance (R).</li>
+                    <li>Provides accurate readings of inductance and quality factor (Q-factor).</li>
+                </ul>
+
+                <h3 class="subsection-heading">5.3 Frequency Response Analysis</h3>
+                <ul>
+                    <li>Using an oscilloscope and function generator, apply an AC signal and observe the voltage and phase shift.</li>
+                    <li>Helps determine self-resonant frequency (SRF) and parasitic effects.</li>
+                </ul>
+
+                <h3 class="subsection-heading">5.4 Testing for Shorted Turns</h3>
+                <ul>
+                    <li>A ring tester can detect shorted windings by analyzing oscillation decay.</li>
+                    <li>Useful for troubleshooting inductors in transformers and motors.</li>
+                </ul>
+
+                <h2 class="section-heading">6. Summary</h2>
+                <p>Inductors play a critical role in electrical and electronic circuits by storing energy, filtering signals, and enabling power conversion. Understanding their identification, operation, and testing is essential for engineers and technicians working in power electronics, telecommunications, and embedded systems. Proper testing methods ensure the reliability and efficiency of inductors in practical applications.</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

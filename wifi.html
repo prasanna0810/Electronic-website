@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi-Based Network Configuration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+        
+        .audio-title {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-title:before, .audio-title:after {
+            margin: 0 10px;
+        }
+        
+        audio {
+            width: 70%;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+            background-color: #e6f4f9;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #4BB4DE;
+            border-radius: 50%;
+        }
+        
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: #3999C1;
+        }
+        
+        /* Audio player animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+        
+        .audio-container:hover {
+            animation: pulse 2s infinite;
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Info box */
+        .info-box {
+            background-color: #e6f4f9;
+            border-left: 5px solid #4BB4DE;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info-title {
+            color: #4BB4DE;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title:before {
+            content: "ℹ️";
+            margin-right: 10px;
+        }
+        
+        /* Warning box */
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title:before {
+            content: "⚠️";
+            margin-right: 10px;
+        }
+        
+        /* Wi-Fi Standards Table */
+        .wifi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .wifi-table th {
+            background-color: #4BB4DE;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .wifi-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .wifi-table tr:hover {
+            background-color: #e6f4f9;
+        }
+        
+        .wifi-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Frequency Band Cards */
+        .band-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .band-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #4BB4DE;
+        }
+        
+        .band-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .band-name {
+            color: #4BB4DE;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        /* Steps container */
+        .steps-container {
+            margin: 20px 0;
+            counter-reset: step-counter;
+        }
+        
+        .step-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4BB4DE;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            counter-increment: step-counter;
+        }
+        
+        .step-box:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #4BB4DE;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #4BB4DE;
+            margin-bottom: 10px;
+        }
+        
+        /* Troubleshooting cards */
+        .troubleshoot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .troubleshoot-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .troubleshoot-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .issue-title {
+            color: #4BB4DE;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .issue-title:before {
+            content: "🔧";
+            margin-right: 10px;
+        }
+        
+        /* Code block */
+        .code-block {
+            background-color: #f4f4f4;
+            border-left: 4px solid #4BB4DE;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Wi-Fi-Based Network Configuration</h1>
+
+            <div class="content">
+                <img src="wifi.jpg" alt="Wi-Fi Network Configuration" class="image">
+                
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="wifi.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">Introduction</h2>
+                <p>Wireless networking, commonly referred to as Wi-Fi, has revolutionized the way we connect to the internet and communicate with devices. Unlike traditional wired networks, Wi-Fi provides users with mobility and ease of access while maintaining high-speed connectivity. This guide delves into the fundamental aspects of Wi-Fi-based network configuration, including setup, security, troubleshooting, and optimization, while also exploring emerging trends in wireless technology.</p>
+
+                <h2 class="section-heading">1. Understanding Wi-Fi Networks</h2>
+                <p>Wi-Fi (Wireless Fidelity) is a technology that allows devices to connect to a network without physical cables. It is based on the IEEE 802.11 family of standards and operates on different frequency bands to provide connectivity.</p>
+                
+                <h3 class="subsection-heading">1.1 Frequency Bands</h3>
+                <p>Wi-Fi operates over different frequency bands, each with its own advantages and disadvantages:</p>
+                
+                <div class="band-grid">
+                    <div class="band-card">
+                        <h3 class="band-name">2.4 GHz Band</h3>
+                        <ul>
+                            <li>Offers longer range and better penetration through walls.</li>
+                            <li>More prone to interference from other household devices like microwaves and cordless phones.</li>
+                            <li>Supports lower data transfer rates compared to higher frequency bands.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="band-card">
+                        <h3 class="band-name">5 GHz Band</h3>
+                        <ul>
+                            <li>Provides faster speeds due to wider channel bandwidth.</li>
+                            <li>Less susceptible to interference.</li>
+                            <li>Shorter range compared to 2.4 GHz and struggles to penetrate solid obstacles.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="band-card">
+                        <h3 class="band-name">6 GHz Band (Wi-Fi 6E)</h3>
+                        <ul>
+                            <li>Exclusive to newer devices supporting Wi-Fi 6E.</li>
+                            <li>Offers ultra-fast speeds, minimal congestion, and lower latency.</li>
+                            <li>Requires advanced hardware for compatibility.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+                <h3 class="subsection-heading">1.2 Wi-Fi Standards</h3>
+                <p>Wi-Fi technology has evolved over the years with improvements in speed, efficiency, and security:</p>
+                
+                <table class="wifi-table">
+                    <tr>
+                        <th>Standard</th>
+                        <th>Year</th>
+                        <th>Max Speed</th>
+                        <th>Frequency</th>
+                        <th>Key Features</th>
+                    </tr>
+                    <tr>
+                        <td>802.11a</td>
+                        <td>1999</td>
+                        <td>54 Mbps</td>
+                        <td>5 GHz</td>
+                        <td>First 5 GHz standard</td>
+                    </tr>
+                    <tr>
+                        <td>802.11b</td>
+                        <td>1999</td>
+                        <td>11 Mbps</td>
+                        <td>2.4 GHz</td>
+                        <td>Wider adoption due to lower cost</td>
+                        <tr>
+                            <td>802.11g</td>
+                            <td>2003</td>
+                            <td>54 Mbps</td>
+                            <td>2.4 GHz</td>
+                            <td>Improved speeds on 2.4 GHz band</td>
+                        </tr>
+                        <tr>
+                            <td>802.11n (Wi-Fi 4)</td>
+                            <td>2009</td>
+                            <td>600 Mbps</td>
+                            <td>2.4 & 5 GHz</td>
+                            <td>Introduced MIMO technology</td>
+                        </tr>
+                        <tr>
+                            <td>802.11ac (Wi-Fi 5)</td>
+                            <td>2014</td>
+                            <td>1 Gbps+</td>
+                            <td>5 GHz</td>
+                            <td>Wider channels, improved MU-MIMO</td>
+                        </tr>
+                        <tr>
+                            <td>802.11ax (Wi-Fi 6)</td>
+                            <td>2019</td>
+                            <td>9.6 Gbps</td>
+                            <td>2.4 & 5 GHz</td>
+                            <td>OFDMA, higher efficiency</td>
+                        </tr>
+                        <tr>
+                            <td>Wi-Fi 6E</td>
+                            <td>2021</td>
+                            <td>9.6 Gbps</td>
+                            <td>6 GHz</td>
+                            <td>Extended to 6 GHz band</td>
+                        </tr>
+                        <tr>
+                            <td>Wi-Fi 7 (upcoming)</td>
+                            <td>Expected 2024</td>
+                            <td>30+ Gbps</td>
+                            <td>2.4, 5 & 6 GHz</td>
+                            <td>Ultra-low latency, higher throughput</td>
+                        </tr>
+                    </table>
+                    
+    
+                    <h2 class="section-heading">2. Wi-Fi Network Setup</h2>
+                    <p>Setting up a Wi-Fi network involves configuring a router, selecting appropriate settings, and ensuring optimal performance.</p>
+                    
+                    <h3 class="subsection-heading">2.1 Selecting a Router</h3>
+                    <div class="info-box">
+                        <div class="info-title">Router Selection Criteria</div>
+                        <p>When choosing a router, consider:</p>
+                        <ul>
+                            <li><strong>Supported Wi-Fi Standard:</strong> Choose Wi-Fi 6/6E for better speed and efficiency.</li>
+                            <li><strong>Dual-Band or Tri-Band Capability:</strong> Ensures better load balancing between devices.</li>
+                            <li><strong>Processor & RAM:</strong> More powerful hardware improves performance in high-traffic networks.</li>
+                            <li><strong>MU-MIMO & Beamforming:</strong> Enhances device connectivity and signal direction.</li>
+                            <li><strong>Security Features:</strong> Look for WPA3 support and built-in firewalls.</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <h3 class="subsection-heading">2.2 Basic Configuration</h3>
+                    <div class="steps-container">
+                        <div class="step-box">
+                            <div class="step-title">Physical Setup</div>
+                            <ul>
+                                <li>Connect the router to a modem using an Ethernet cable.</li>
+                                <li>Power on both devices and wait for them to stabilize.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-title">Accessing the Router's Interface</div>
+                            <ul>
+                                <li>Open a browser and enter the router's IP (typically 192.168.1.1 or 192.168.0.1).</li>
+                                <li>Log in using the default admin credentials (change them immediately after login).</li>
+                            </ul>
+                            <div class="code-block">
+                                # Common default router addresses
+                                http://192.168.0.1
+                                http://192.168.1.1
+                                http://10.0.0.1
+                                
+                                # Common default login credentials
+                                Username: admin
+                                Password: admin (or password, or blank)
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-title">Network Name (SSID) & Password Setup</div>
+                            <ul>
+                                <li>Set a unique SSID for easy identification.</li>
+                                <li>Use WPA3 encryption (or WPA2 if WPA3 isn't available) for security.</li>
+                                <li>Choose a strong password (at least 12 characters, mix of numbers, symbols, uppercase, and lowercase letters).</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-title">IP Address & DHCP Settings</div>
+                            <ul>
+                                <li>Enable DHCP to automatically assign IP addresses to connected devices.</li>
+                                <li>Configure static IPs for critical devices (e.g., printers, servers).</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-title">Enabling Guest Networks</div>
+                            <ul>
+                                <li>Set up an isolated guest network to prevent access to sensitive resources.</li>
+                                <li>Apply bandwidth restrictions if necessary.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    
+                    <h3 class="subsection-heading">2.3 Advanced Router Settings</h3>
+                    <ul>
+                        <li><strong>Channel Selection:</strong> Avoid overcrowded channels by using tools like Wi-Fi Analyzer.</li>
+                        <li><strong>QoS (Quality of Service):</strong> Prioritize bandwidth for streaming, gaming, or VoIP calls.</li>
+                        <li><strong>MAC Address Filtering:</strong> Allow only registered devices to connect.</li>
+                        <li><strong>Port Forwarding:</strong> Required for remote access to internal network services (e.g., gaming servers, VPNs).</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">Channel Selection Tips</div>
+                        <p>For optimal performance, select channels with minimal interference:</p>
+                        <ul>
+                            <li><strong>2.4 GHz band:</strong> Use channels 1, 6, or 11 as they don't overlap.</li>
+                            <li><strong>5 GHz band:</strong> Higher channels (149-165) often have fewer restrictions on power output.</li>
+                            <li>Use a Wi-Fi analyzer app to identify the least congested channels in your area.</li>
+                        </ul>
+                    </div>
+                    
+    
+                    <h2 class="section-heading">3. Securing a Wi-Fi Network</h2>
+                    
+                    <h3 class="subsection-heading">3.1 Encryption and Authentication</h3>
+                    <div class="info-box">
+                        <div class="info-title">Wi-Fi Security Protocols</div>
+                        <ul>
+                            <li><strong>WPA3 (Recommended):</strong> Latest encryption standard, resists brute-force attacks.</li>
+                            <li><strong>WPA2 (Fallback option):</strong> Still widely used but vulnerable to key reinstallation attacks (KRACK).</li>
+                            <li><strong>WEP:</strong> Insecure, easily cracked within minutes. Avoid using.</li>
+                        </ul>
+                    </div>
+                    
+                    <h3 class="subsection-heading">3.2 Additional Security Measures</h3>
+                    <div class="steps-container">
+                        <div class="step-box">
+                            <div class="step-title">Disable WPS</div>
+                            <p>Wi-Fi Protected Setup is easily exploited. Turn it off in your router settings.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-title">Change Default Admin Credentials</div>
+                            <p>Prevent unauthorized configuration changes by using a strong, unique password for router administration.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-title">Enable Network Monitoring</div>
+                            <p>Regularly check for unknown connected devices using your router's management interface.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-title">Use a Firewall</div>
+                            <p>Provides an extra layer of security against threats. Most routers have built-in firewalls that should be enabled.</p>
+                        </div>
+                    </div>
+                    
+    
+                    <h2 class="section-heading">4. Optimizing Wi-Fi Performance</h2>
+                    
+                    <h3 class="subsection-heading">4.1 Enhancing Signal Strength</h3>
+                    <ul>
+                        <li><strong>Router Placement:</strong> Central location, elevated position, away from metal objects.</li>
+                        <li><strong>Use Mesh Wi-Fi or Extenders:</strong> Improves coverage in large homes.</li>
+                        <li><strong>Adjust Antennas:</strong> Position antennas perpendicular for better coverage.</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <div class="info-title">Optimal Router Placement</div>
+                        <p>For the best Wi-Fi coverage:</p>
+                        <ul>
+                            <li>Place the router in a central location of your home or office.</li>
+                            <li>Elevate the router (e.g., on a shelf) for better signal propagation.</li>
+                            <li>Keep the router away from metal objects, microwaves, and cordless phones.</li>
+                            <li>Avoid placing the router near concrete walls or inside cabinets.</li>
+                            <li>Position the router away from large bodies of water (like aquariums).</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <h3 class="subsection-heading">4.2 Improving Speed</h3>
+                    <ul>
+                        <li><strong>Enable QoS:</strong> Ensures important tasks get bandwidth priority.</li>
+                        <li><strong>Reduce Connected Devices:</strong> Too many devices can slow down performance.</li>
+                        <li><strong>Upgrade Internet Plan:</strong> Check if your ISP offers higher speeds.</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">Bandwidth Hogs</div>
+                        <p>These activities can significantly impact your Wi-Fi performance:</p>
+                        <ul>
+                            <li>4K/8K video streaming</li>
+                            <li>Large file downloads/uploads</li>
+                            <li>Online gaming</li>
+                            <li>Video conferencing</li>
+                            <li>Cloud backups</li>
+                        </ul>
+                        <p>Consider scheduling bandwidth-intensive activities during off-peak hours.</p>
+                    </div>
+                    
+    
+                    <h2 class="section-heading">5. Troubleshooting Wi-Fi Issues</h2>
+                    
+                    <h3 class="subsection-heading">5.1 Common Connection Problems</h3>
+                    <div class="troubleshoot-grid">
+                        <div class="troubleshoot-card">
+                            <h3 class="issue-title">No Internet Access</h3>
+                            <ul>
+                                <li>Restart modem and router.</li>
+                                <li>Check ISP outage status.</li>
+                                <li>Verify all cables are properly connected.</li>
+                                <li>Try connecting via Ethernet to isolate Wi-Fi issues.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="troubleshoot-card">
+                            <h3 class="issue-title">Weak Signal</h3>
+                            <ul>
+                                <li>Relocate router to a more central position.</li>
+                                <li>Use a range extender or mesh system.</li>
+                                <li>Check for interference sources.</li>
+                                <li>Update router firmware.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="troubleshoot-card">
+                            <h3 class="issue-title">Frequent Disconnections</h3>
+                            <ul>
+                                <li>Update router firmware.</li>
+                                <li>Change wireless channel.</li>
+                                <li>Check for overheating issues.</li>
+                                <li>Reset network settings on problematic devices.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h3 class="subsection-heading">5.2 Speed Issues</h3>
+                    <ul>
+                        <li><strong>High Network Traffic:</strong> Disconnect idle devices.</li>
+                        <li><strong>Channel Congestion:</strong> Switch to a less crowded channel.</li>
+                        <li><strong>Outdated Hardware:</strong> Upgrade to a newer router.</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        # Basic Wi-Fi troubleshooting commands (Windows)
+                        
+                        # View wireless network information
+                        netsh wlan show all
+                        
+                        # Reset network adapter
+                        netsh wlan disconnect
+                        netsh interface set interface "Wi-Fi" disable
+                        netsh interface set interface "Wi-Fi" enable
+                        
+                        # Flush DNS cache
+                        ipconfig /flushdns
+                        
+                        # Release and renew IP address
+                        ipconfig /release
+                        ipconfig /renew
+                    </div>
+                    
+    
+                    <h2 class="section-heading">6. Future of Wi-Fi Networks</h2>
+                    <ul>
+                        <li><strong>Wi-Fi 7 (802.11be):</strong> Higher speeds, lower latency, improved efficiency.</li>
+                        <li><strong>AI-driven Optimization:</strong> Smart routers that dynamically adjust performance.</li>
+                        <li><strong>IoT & Smart Home Integration:</strong> Enhanced connectivity for smart devices.</li>
+                    </ul>
+                    
+                    <div class="info-title">Wi-Fi 7 Features</div>
+                    <p>The upcoming Wi-Fi 7 standard is expected to bring several improvements:</p>
+                    <ul>
+                        <li>Theoretical speeds beyond 30 Gbps</li>
+                        <li>320 MHz channel bandwidth (double that of Wi-Fi 6)</li>
+                        <li>Multi-Link Operation (MLO) allowing simultaneous use of multiple bands</li>
+                        <li>4K QAM modulation (up from 1024 QAM in Wi-Fi 6)</li>
+                        <li>Reduced latency for real-time applications</li>
+                        <li>Better performance in congested environments</li>
+                    </ul>
+                </div>
+                
+
+                <h2 class="section-heading">Conclusion</h2>
+                <p>A well-configured Wi-Fi network enhances performance, security, and user experience. Understanding advanced configurations, optimizing signal strength, and implementing strong security measures ensure a stable and secure wireless environment. As technology advances, staying updated with emerging Wi-Fi standards and security practices is essential for maintaining an optimal wireless experience.</p>
+                
+                <div class="info-box">
+                    <div class="info-title">Key Takeaways</div>
+                    <ul>
+                        <li>Choose the right router and Wi-Fi standard for your needs.</li>
+                        <li>Implement strong security measures, including WPA3 encryption when possible.</li>
+                        <li>Optimize router placement for the best signal coverage.</li>
+                        <li>Regularly update firmware and monitor connected devices.</li>
+                        <li>Use troubleshooting tools to diagnose and resolve connectivity issues.</li>
+                        <li>Stay informed about emerging Wi-Fi technologies and standards.</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Common Mistakes to Avoid</div>
+                    <ul>
+                        <li>Using default router credentials</li>
+                        <li>Neglecting to update router firmware</li>
+                        <li>Placing the router in a poor location</li>
+                        <li>Using outdated security protocols (WEP or open networks)</li>
+                        <li>Ignoring channel congestion</li>
+                        <li>Connecting too many devices to a basic router</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">Further Resources</h3>
+                <ul>
+                    <li>Wi-Fi Alliance: <a href="https://www.wi-fi.org/">https://www.wi-fi.org/</a></li>
+                    <li>IEEE 802.11 Standards: <a href="https://standards.ieee.org/standard/802_11-2016.html">https://standards.ieee.org/standard/802_11-2016.html</a></li>
+                    <li>Wi-Fi Security Best Practices: <a href="https://www.fcc.gov/consumers/guides/how-protect-yourself-online">https://www.fcc.gov/consumers/guides/how-protect-yourself-online</a></li>
+                    <li>Router Manufacturers' Support Pages:
+                        <ul>
+                            <li>Netgear: <a href="https://www.netgear.com/support/">https://www.netgear.com/support/</a></li>
+                            <li>TP-Link: <a href="https://www.tp-link.com/support/">https://www.tp-link.com/support/</a></li>
+                            <li>ASUS: <a href="https://www.asus.com/support/">https://www.asus.com/support/</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
+
+    

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage of DC Regulated Power</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+        
+        .audio-title {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-title:before, .audio-title:after {
+            margin: 0 10px;
+        }
+        
+        audio {
+            width: 70%;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+            background-color: #e6f4f9;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #4BB4DE;
+            border-radius: 50%;
+        }
+        
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: #3999C1;
+        }
+        
+        /* Audio player animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+        
+        .audio-container:hover {
+            animation: pulse 2s infinite;
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #4BB4DE;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e6f4f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Usage of DC Regulated Power</h1>
+
+            <div class="content">
+                <img src="dc_power.jpg" alt="DC Regulated Power Supply" class="image">
+                
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="dc_power.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">Introduction</h2>
+                <p>DC (Direct Current) regulated power is an essential component in electronic circuits and systems, ensuring stable voltage levels for precise and reliable operation. Unlike AC (Alternating Current), which fluctuates in magnitude and polarity, DC provides a constant voltage or current, making it ideal for powering electronic devices, medical instruments, communication systems, and industrial automation. This chapter explores the principles, applications, advantages, and practical considerations of DC regulated power supplies.</p>
+
+                <h2 class="section-heading">Principles of DC Regulated Power Supply</h2>
+                <p>A DC regulated power supply converts an AC voltage source into a stable DC output, maintaining consistent voltage levels irrespective of variations in input voltage or load conditions. The primary components of a DC regulated power supply include:</p>
+                
+                <ul>
+                    <li><strong>Transformer</strong> – Steps down the AC mains voltage to a lower level.</li>
+                    <li><strong>Rectifier</strong> – Converts AC voltage into pulsating DC using diodes.</li>
+                    <li><strong>Filter</strong> – Smooths the rectified DC output by reducing ripple, usually employing capacitors and inductors.</li>
+                    <li><strong>Voltage Regulator</strong> – Maintains a steady DC voltage despite fluctuations in input voltage and load conditions.</li>
+                    <li><strong>Protection Circuitry</strong> – Prevents damage due to overvoltage, overcurrent, and overheating.</li>
+                </ul>
+
+                <h2 class="section-heading">Rectification Process</h2>
+                <p>The conversion of AC to DC involves different rectification techniques:</p>
+                
+                <ul>
+                    <li><strong>Half-wave Rectification:</strong> Uses a single diode to allow only one half of the AC cycle, leading to a high ripple factor.</li>
+                    <li><strong>Full-wave Rectification:</strong> Uses a center-tap transformer and two diodes or a bridge rectifier with four diodes, allowing both halves of the AC cycle to contribute, reducing ripple significantly.</li>
+                </ul>
+
+                <h2 class="section-heading">Types of DC Voltage Regulators</h2>
+                
+                <h3 class="subsection-heading">Linear Regulators:</h3>
+                <ul>
+                    <li>Provide precise voltage control.</li>
+                    <li>Generate heat due to energy dissipation.</li>
+                    <li>Examples: 7805 (5V), 7812 (12V), LM317 (adjustable).</li>
+                    <li>Commonly used in low-power applications due to simplicity.</li>
+                </ul>
+
+                <h3 class="subsection-heading">Switching Regulators:</h3>
+                <ul>
+                    <li>More efficient than linear regulators.</li>
+                    <li>Use PWM (Pulse Width Modulation) techniques to regulate voltage.</li>
+                    <li>Types:
+                        <ul>
+                            <li><strong>Buck Converter:</strong> Steps down voltage efficiently.</li>
+                            <li><strong>Boost Converter:</strong> Steps up voltage for applications requiring higher output voltage.</li>
+                            <li><strong>Buck-Boost Converter:</strong> Provides flexible voltage regulation, either increasing or decreasing the voltage as needed.</li>
+                        </ul>
+                    </li>
+                    <li>Widely used in battery-powered devices and high-efficiency applications.</li>
+                </ul>
+
+                <h2 class="section-heading">Applications of DC Regulated Power</h2>
+                
+                <h3 class="subsection-heading">1. Consumer Electronics</h3>
+                <ul>
+                    <li>Powers devices like smartphones, laptops, and televisions.</li>
+                    <li>Ensures consistent performance by preventing voltage fluctuations.</li>
+                    <li>Essential for microcontrollers, sensors, and embedded systems.</li>
+                </ul>
+
+                <h3 class="subsection-heading">2. Medical Equipment</h3>
+                <ul>
+                    <li>Essential for accurate operation of ECG machines, ventilators, and infusion pumps.</li>
+                    <li>Provides stable and noise-free power to prevent interference with sensitive signals.</li>
+                    <li>Used in implantable medical devices like pacemakers and hearing aids.</li>
+                </ul>
+
+                <h3 class="subsection-heading">3. Industrial Automation</h3>
+                <ul>
+                    <li>Powers sensors, actuators, and controllers in manufacturing plants.</li>
+                    <li>Ensures smooth operation of Programmable Logic Controllers (PLCs).</li>
+                    <li>Supports robotic systems requiring precise voltage levels for motor control.</li>
+                </ul>
+
+                <h3 class="subsection-heading">4. Telecommunications</h3>
+                <ul>
+                    <li>Supports uninterrupted communication in mobile networks and data centers.</li>
+                    <li>Used in routers, servers, and signal processing devices.</li>
+                    <li>Powers base stations and transmission towers to maintain stable network operations.</li>
+                </ul>
+
+                <h3 class="subsection-heading">5. Laboratory and Research Equipment</h3>
+                <ul>
+                    <li>Provides precise voltage for testing and experimentation.</li>
+                    <li>Used in oscilloscopes, signal generators, and spectrum analyzers.</li>
+                    <li>Required for calibration of electronic devices and sensors.</li>
+                </ul>
+
+                <h2 class="section-heading">Advantages of DC Regulated Power</h2>
+                <ul>
+                    <li><strong>Voltage Stability:</strong> Prevents fluctuations that could damage sensitive electronic components.</li>
+                    <li><strong>Low Noise:</strong> Ideal for applications requiring clean power, such as medical and communication equipment.</li>
+                    <li><strong>Efficiency:</strong> Switching regulators offer high energy efficiency.</li>
+                    <li><strong>Compact Design:</strong> Modern DC power supplies are lightweight and compact, making them suitable for portable applications.</li>
+                    <li><strong>Protection Mechanisms:</strong> Includes overvoltage, overcurrent, short-circuit, and thermal protection features to enhance system reliability.</li>
+                </ul>
+
+                <h2 class="section-heading">Practical Considerations</h2>
+                
+                <h3 class="subsection-heading">1. Choosing the Right Power Supply</h3>
+                <ul>
+                    <li>Consider voltage and current requirements.</li>
+                    <li>Select a power supply with a suitable form factor and efficiency rating.</li>
+                    <li>Ensure compatibility with the load characteristics (resistive, inductive, or capacitive).</li>
+                </ul>
+
+                <h3 class="subsection-heading">2. Heat Management</h3>
+                <ul>
+                    <li>Linear regulators generate heat, requiring heat sinks or cooling mechanisms.</li>
+                    <li>Switching regulators operate cooler but may introduce electromagnetic interference (EMI).</li>
+                    <li>Use proper ventilation in enclosed power supply systems to prevent overheating.</li>
+                </ul>
+
+                <h3 class="subsection-heading">3. Load Regulation</h3>
+                <ul>
+                    <li>Ensure minimal voltage drop under varying load conditions.</li>
+                    <li>Use feedback mechanisms for accurate voltage control.</li>
+                    <li>Load regulation can be improved by using precision voltage reference circuits.</li>
+                </ul>
+
+                <h3 class="subsection-heading">4. Safety Measures</h3>
+                <ul>
+                    <li>Implement proper insulation and grounding.</li>
+                    <li>Use fuses and circuit breakers to prevent short circuits and overload conditions.</li>
+                    <li>Ensure compliance with international safety standards (IEC, UL, ISO) for power supply design.</li>
+                    <li>Incorporate isolation techniques in high-voltage applications to protect users and components.</li>
+                </ul>
+
+                <h3 class="subsection-heading">5. Battery Integration and Backup Power</h3>
+                <ul>
+                    <li>Many DC power supplies integrate rechargeable batteries for backup in case of power failures.</li>
+                    <li>Uninterruptible Power Supplies (UPS) use DC regulation to maintain critical system operation during outages.</li>
+                    <li>Solar-powered DC systems use regulated power supplies for energy storage and efficient power delivery.</li>
+                </ul>
+
+                <h2 class="section-heading">Conclusion</h2>
+                <p>DC regulated power plays a crucial role in modern electronics, ensuring reliable and stable performance across a variety of applications. By selecting the right power supply type and implementing effective regulation techniques, industries can achieve enhanced efficiency and safety in their electronic systems. Understanding these principles is fundamental for engineers, technicians, and researchers working with electronic and electrical systems. With advancements in power electronics, DC regulated power supplies continue to evolve, enabling innovations in energy efficiency, miniaturization, and smart power management.</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

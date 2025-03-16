@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage of Analog and Digital Storage Oscilloscopes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+        
+        .audio-title {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-title:before, .audio-title:after {
+            margin: 0 10px;
+        }
+        
+        audio {
+            width: 70%;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+            background-color: #e6f4f9;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #4BB4DE;
+            border-radius: 50%;
+        }
+        
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: #3999C1;
+        }
+        
+        /* Audio player animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+        
+        .audio-container:hover {
+            animation: pulse 2s infinite;
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #4BB4DE;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e6f4f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Usage of Analog and Digital Storage Oscilloscopes</h1>
+
+            <div class="content">
+                <img src="osc.jpg" alt="Analog and Digital Oscilloscopes" class="image">
+                
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="osc.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">1. Introduction to Oscilloscopes</h2>
+                <p>Oscilloscopes are essential instruments in electrical and electronic engineering, used to observe varying signal voltages. They provide graphical representations of waveforms, helping engineers analyze signal properties such as amplitude, frequency, phase, noise, and signal distortions.</p>
+                
+                <p>Oscilloscopes are broadly classified into two types:</p>
+                <ul>
+                    <li><strong>Analog Oscilloscope (AO):</strong> Displays real-time signals using a cathode-ray tube (CRT) and directly applies the input signal to deflect an electron beam.</li>
+                    <li><strong>Digital Storage Oscilloscope (DSO):</strong> Converts analog signals into digital data for storage, processing, and analysis. It provides more advanced functionalities such as automated measurements, waveform storage, and mathematical analysis.</li>
+                </ul>
+
+                <h2 class="section-heading">2. Analog Oscilloscope: Principles and Usage</h2>
+                
+                <h3 class="subsection-heading">2.1 Working Principle</h3>
+                <p>An Analog Oscilloscope (AO) operates by deflecting an electron beam onto a phosphorescent screen. The beam's vertical deflection represents the input signal (Y-axis), while a horizontal time base (X-axis) sweeps the beam across the screen at a controlled rate. The intensity of the beam determines brightness.</p>
+                
+                <h3 class="subsection-heading">2.2 Front Panel Controls</h3>
+                
+                <p><strong>Vertical Controls:</strong></p>
+                <ul>
+                    <li><strong>VOLTS/DIV:</strong> Adjusts vertical sensitivity to control waveform amplitude display.</li>
+                    <li><strong>POSITION:</strong> Moves the waveform up or down to align it properly.</li>
+                </ul>
+                
+                <p><strong>AC/DC/GND Coupling:</strong></p>
+                <ul>
+                    <li><strong>AC Coupling:</strong> Blocks DC component and allows AC signals to pass.</li>
+                    <li><strong>DC Coupling:</strong> Displays both AC and DC components.</li>
+                    <li><strong>GND:</strong> Disconnects the input signal for reference positioning.</li>
+                </ul>
+                
+                <p><strong>Horizontal Controls:</strong></p>
+                <ul>
+                    <li><strong>SEC/DIV:</strong> Adjusts the time base (speed of signal display along X-axis).</li>
+                    <li><strong>POSITION:</strong> Moves waveform left or right to align with the grid.</li>
+                </ul>
+                
+                <p><strong>Trigger Controls:</strong></p>
+                <ul>
+                    <li><strong>LEVEL:</strong> Sets the voltage level at which the oscilloscope triggers.</li>
+                    <li><strong>SOURCE:</strong> Selects the signal source for triggering (internal, external, or line sync).</li>
+                    <li><strong>MODE:</strong> Controls how the oscilloscope triggers (Auto, Normal, or Single Shot).</li>
+                </ul>
+                
+                <p><strong>Intensity and Focus Controls:</strong></p>
+                <ul>
+                    <li><strong>INTENSITY:</strong> Adjusts brightness of the displayed waveform.</li>
+                    <li><strong>FOCUS:</strong> Sharpens waveform clarity.</li>
+                </ul>
+                
+                <h3 class="subsection-heading">2.3 Operating Procedure</h3>
+                <ol>
+                    <li><strong>Power On and Warm-up:</strong> Turn on the oscilloscope and allow it to stabilize for a few minutes.</li>
+                    <li><strong>Probe Connection:</strong> Connect probes to the test circuit, ensuring proper compensation.</li>
+                    <li><strong>Set Input Coupling:</strong> Choose AC, DC, or GND based on measurement needs.</li>
+                    <li><strong>Adjust Vertical and Horizontal Controls:</strong> Optimize waveform visibility.</li>
+                    <li><strong>Triggering Adjustment:</strong> Select appropriate triggering to stabilize the waveform.</li>
+                    <li><strong>Measure and Analyze:</strong> Use graticule or external tools to measure amplitude, frequency, and time intervals.</li>
+                </ol>
+                
+                <h3 class="subsection-heading">2.4 Advantages and Limitations</h3>
+                
+                <p><strong>Advantages:</strong></p>
+                <ul>
+                    <li>Real-time signal display without digital processing delay.</li>
+                    <li>High bandwidth and fast response for high-frequency signals.</li>
+                    <li>Simple operation without the need for extensive setup.</li>
+                </ul>
+                
+                <p><strong>Limitations:</strong></p>
+                <ul>
+                    <li>No storage or recall functionality.</li>
+                    <li>Limited accuracy in complex measurements.</li>
+                    <li>CRT-based models are bulky and fragile.</li>
+                </ul>
+
+                <h2 class="section-heading">3. Digital Storage Oscilloscope (DSO): Principles and Usage</h2>
+                
+                <h3 class="subsection-heading">3.1 Working Principle</h3>
+                <p>A Digital Storage Oscilloscope (DSO) digitizes analog signals using an Analog-to-Digital Converter (ADC). The digital data is stored in memory, processed, and displayed on an LCD or LED screen. DSOs offer advanced analysis features such as mathematical operations, automated measurements, and waveform storage.</p>
+                
+                <h3 class="subsection-heading">3.2 Front Panel Controls</h3>
+                
+                <p><strong>Vertical Controls:</strong></p>
+                <ul>
+                    <li><strong>VOLTS/DIV:</strong> Adjusts signal amplitude scaling.</li>
+                    <li><strong>POSITION:</strong> Moves waveform vertically for alignment.</li>
+                    <li><strong>AC/DC Coupling:</strong> Selects the appropriate signal mode.</li>
+                </ul>
+                
+                <p><strong>Horizontal Controls:</strong></p>
+                <ul>
+                    <li><strong>SEC/DIV:</strong> Adjusts time scale for waveform viewing.</li>
+                    <li><strong>POSITION:</strong> Moves the waveform left or right.</li>
+                </ul>
+                
+                <p><strong>Trigger Controls:</strong></p>
+                <ul>
+                    <li><strong>EDGE, PULSE, VIDEO:</strong> Various triggering modes for different signals.</li>
+                    <li><strong>LEVEL:</strong> Sets the voltage level for triggering.</li>
+                    <li><strong>DELAY:</strong> Provides delayed sweep functionality.</li>
+                </ul>
+                
+                <p><strong>Additional Features:</strong></p>
+                <ul>
+                    <li><strong>Cursors:</strong> Movable lines to measure waveform parameters.</li>
+                    <li><strong>Math Functions:</strong> FFT, addition, subtraction, multiplication, and division of waveforms.</li>
+                    <li><strong>Storage & Recall:</strong> Saves waveforms for later analysis.</li>
+                    <li><strong>USB & Network Connectivity:</strong> Exports data to computers or cloud storage.</li>
+                </ul>
+                
+                <h3 class="subsection-heading">3.3 Operating Procedure</h3>
+                <ol>
+                    <li><strong>Power On and Initialize:</strong> Start the oscilloscope and load default settings.</li>
+                    <li><strong>Connect the Probe:</strong> Attach probes to the circuit, ensuring compensation.</li>
+                    <li><strong>Set Input Coupling:</strong> Choose AC, DC, or ground reference.</li>
+                    <li><strong>Adjust Display Settings:</strong> Optimize vertical, horizontal, and intensity controls.</li>
+                    <li><strong>Select Triggering Mode:</strong> Stabilize the waveform with proper triggering.</li>
+                    <li><strong>Use Analysis Features:</strong> Apply cursors, FFT, and storage functions.</li>
+                    <li><strong>Save and Document Data:</strong> Export waveform data for reporting and analysis.</li>
+                </ol>
+                
+                <h3 class="subsection-heading">3.4 Advantages and Limitations</h3>
+                
+                <p><strong>Advantages:</strong></p>
+                <ul>
+                    <li>High precision with digital measurement tools.</li>
+                    <li>Storage, retrieval, and automated analysis capabilities.</li>
+                    <li>Ability to capture transient and rare events.</li>
+                </ul>
+                
+                <p><strong>Limitations:</strong></p>
+                <ul>
+                    <li>More expensive than analog oscilloscopes.</li>
+                    <li>Limited real-time performance for very high-speed signals.</li>
+                    <li>Requires calibration and firmware updates.</li>
+                </ul>
+
+                <h2 class="section-heading">4. Applications of Oscilloscopes</h2>
+                <ul>
+                    <li><strong>Circuit Debugging:</strong> Identifying and fixing faulty signals.</li>
+                    <li><strong>Signal Analysis:</strong> Measuring amplitude, frequency, and phase shifts.</li>
+                    <li><strong>Medical Applications:</strong> Monitoring biomedical signals (e.g., ECG, EEG).</li>
+                    <li><strong>Automotive Diagnostics:</strong> Analyzing engine control and sensor signals.</li>
+                    <li><strong>Embedded Systems Testing:</strong> Debugging microcontroller outputs.</li>
+                    <li><strong>Communications Testing:</strong> Evaluating modulated signals in RF circuits.</li>
+                    <li><strong>Power Electronics:</strong> Observing switching waveforms in inverters and converters.</li>
+                </ul>
+
+                <h2 class="section-heading">5. Conclusion</h2>
+                <p>Both Analog and Digital Storage Oscilloscopes play vital roles in electrical and electronic diagnostics. Analog oscilloscopes provide real-time waveform visualization, making them ideal for high-speed signals. Digital Storage Oscilloscopes, on the other hand, offer advanced features such as data storage, mathematical operations, and waveform processing, making them highly versatile. Choosing the right oscilloscope depends on the application requirements, signal characteristics, and level of analysis needed.</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
+
+                    

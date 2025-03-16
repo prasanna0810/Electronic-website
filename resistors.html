@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistors: Identification, Operation, Applications, and Testing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #4BB4DE;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #4BB4DE;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .subsection-heading {
+            color: #4BB4DE;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4BB4DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3999C1;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .formula {
+            font-style: italic;
+            margin: 15px 0;
+        }
+        .audio-container {
+           margin: 30px auto;
+           padding: 20px;
+           background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+           border-radius: 15px;
+           box-shadow: 0 4px 15px rgba(75, 180, 222, 0.2);
+           max-width: 600px;
+           text-align: center;
+           border: 1px solid rgba(75, 180, 222, 0.3);
+        }
+
+        .audio-title {
+          color: #4BB4DE;
+          font-size: 20px;
+          margin-bottom: 15px;
+          font-weight: bold;
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .audio-title:before, .audio-title:after {
+          margin: 0 10px;
+        }
+
+       audio {
+         width: 70%;
+         height: 50px;
+         border-radius: 30px;
+         outline: none;
+         margin: 0 auto;
+         display: block;
+        }
+
+        /* This targets Chrome, Safari, and newer Edge */
+        audio::-webkit-media-controls-panel {
+         background-color: #e6f4f9;
+        }
+
+        audio::-webkit-media-controls-play-button {
+         background-color: #4BB4DE;
+         border-radius: 50%;
+        }
+
+        audio::-webkit-media-controls-play-button:hover {
+          background-color: #3999C1;
+        }
+
+       /* Audio player animation */
+        @keyframes pulse {
+         0% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0.4); }
+         70% { box-shadow: 0 0 0 10px rgba(75, 180, 222, 0); }
+         100% { box-shadow: 0 0 0 0 rgba(75, 180, 222, 0); }
+        }
+
+       .audio-container:hover {
+           animation: pulse 2s infinite;
+           transform: translateY(-2px);
+           transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Resistors: Identification, Operation, Applications, and Testing</h1>
+
+            <div class="content">
+                <img src="resistors.jpg" class="image">
+
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="resistors.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">1. Introduction to Resistors</h2>
+                <p>Resistors are one of the fundamental components in electrical and electronic circuits. They are passive components that limit, regulate, or control the flow of electric current by providing electrical resistance. The unit of resistance is the Ohm (Ω), named after Georg Simon Ohm, who formulated Ohm's Law.</p>
+
+                <p>Resistors are essential in circuit design, whether for voltage control, current limiting, or signal processing. Their versatility makes them crucial in fields such as power electronics, telecommunications, and consumer electronics.</p>
+
+                <h2 class="section-heading">2. Identification of Resistors</h2>
+                <p>Resistors come in various types, each with specific characteristics and identification methods.</p>
+
+                <h3 class="subsection-heading">2.1 Types of Resistors</h3>
+                <p><strong>Fixed Resistors</strong> – These have a constant resistance value and are commonly used in circuits. Examples include:</p>
+                <ul>
+                    <li>Carbon film resistors</li>
+                    <li>Metal film resistors</li>
+                    <li>Wire-wound resistors</li>
+                </ul>
+
+                <p><strong>Variable Resistors (Potentiometers & Rheostats)</strong> – These resistors allow manual adjustment of resistance. Used in applications like volume control in audio devices.</p>
+
+                <p><strong>Surface-Mount Resistors (SMD Resistors)</strong> – Small-sized resistors used in modern circuit boards. Identified by a numerical code.</p>
+
+                <p><strong>Thermistors (Temperature-Sensitive Resistors)</strong> – Their resistance changes with temperature. Used in climate control and temperature monitoring systems.</p>
+
+                <p><strong>Light-Dependent Resistors (LDRs)</strong> – Their resistance varies with light intensity, commonly found in automatic lighting systems.</p>
+
+                <h3 class="subsection-heading">2.2 Identifying Resistors by Color Code</h3>
+                <p>Axial lead resistors have a color-coded system printed on them. The four-band color code is the most common:</p>
+
+                <table>
+                    <tr>
+                        <th>Color</th>
+                        <th>Digit</th>
+                        <th>Multiplier</th>
+                        <th>Tolerance</th>
+                    </tr>
+                    <tr>
+                        <td>Black</td>
+                        <td>0</td>
+                        <td>×10⁰</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Brown</td>
+                        <td>1</td>
+                        <td>×10¹</td>
+                        <td>±1%</td>
+                    </tr>
+                    <tr>
+                        <td>Red</td>
+                        <td>2</td>
+                        <td>×10²</td>
+                        <td>±2%</td>
+                    </tr>
+                    <tr>
+                        <td>Orange</td>
+                        <td>3</td>
+                        <td>×10³</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Yellow</td>
+                        <td>4</td>
+                        <td>×10⁴</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Green</td>
+                        <td>5</td>
+                        <td>×10⁵</td>
+                        <td>±0.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Blue</td>
+                        <td>6</td>
+                        <td>×10⁶</td>
+                        <td>±0.25%</td>
+                    </tr>
+                    <tr>
+                        <td>Violet</td>
+                        <td>7</td>
+                        <td>×10⁷</td>
+                        <td>±0.1%</td>
+                    </tr>
+                    <tr>
+                        <td>Gray</td>
+                        <td>8</td>
+                        <td>×10⁸</td>
+                        <td>±0.05%</td>
+                    </tr>
+                    <tr>
+                        <td>White</td>
+                        <td>9</td>
+                        <td>×10⁹</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>—</td>
+                        <td>×10⁻¹</td>
+                        <td>±5%</td>
+                    </tr>
+                    <tr>
+                        <td>Silver</td>
+                        <td>—</td>
+                        <td>×10⁻²</td>
+                        <td>±10%</td>
+                    </tr>
+                </table>
+
+                <p>For example, a resistor with Red-Violet-Yellow-Gold bands would be:</p>
+                <p>27 × 10⁴ Ω (270kΩ) with ±5% tolerance.</p>
+
+                <h3 class="subsection-heading">2.3 Surface-Mount Resistor Codes</h3>
+                <p>SMD resistors use a numerical marking system instead of color codes. A three-digit SMD code consists of:</p>
+                <ul>
+                    <li>First two digits: Significant figures</li>
+                    <li>Third digit: Multiplier</li>
+                </ul>
+                <p>Example: "103" means 10 × 10³ = 10kΩ</p>
+
+                <h2 class="section-heading">3. Operation of Resistors</h2>
+                <p>Resistors obey Ohm's Law, which states:</p>
+                <p class="formula">V = IR</p>
+                <p>where:</p>
+                <ul>
+                    <li>V = Voltage across the resistor (volts, V)</li>
+                    <li>I = Current flowing through the resistor (amperes, A)</li>
+                    <li>R = Resistance (ohms, Ω)</li>
+                </ul>
+
+                <h3 class="subsection-heading">3.1 Power Dissipation in Resistors</h3>
+                <p>Resistors convert electrical energy into heat, and the power dissipated is given by:</p>
+                <p class="formula">P = IV = I²R = V²/R</p>
+                <p>where P is power (watts, W). The power rating of a resistor determines how much power it can safely dissipate.</p>
+
+                <h2 class="section-heading">4. Applications of Resistors</h2>
+                <p>Resistors are used in various applications across electronics and electrical engineering.</p>
+
+                <h3 class="subsection-heading">4.1 Voltage Divider Circuits</h3>
+                <p>Resistors in series can divide voltage proportionally. The output voltage in a voltage divider circuit is given by:</p>
+                <p class="formula">Vout = Vin × R2/(R1 + R2)</p>
+                <p>where R1 and R2 are the resistors in series.</p>
+
+                <h3 class="subsection-heading">4.2 Current Limiting</h3>
+                <p>Resistors protect LEDs, transistors, and microcontrollers by restricting excess current. For an LED circuit:</p>
+                <p class="formula">R = (Vsupply - VLED)/ILED</p>
+                <p>ensures safe LED operation.</p>
+
+                <h3 class="subsection-heading">4.3 Signal Conditioning</h3>
+                <p>Resistors help in forming filters, amplifiers, and feedback networks for analog and digital signal processing.</p>
+
+                <h3 class="subsection-heading">4.4 Temperature and Light Sensing</h3>
+                <p><strong>Thermistors:</strong> Used in HVAC systems for automatic temperature control.</p>
+                <p><strong>LDRs:</strong> Used in automatic street lighting based on ambient light conditions.</p>
+
+                <h3 class="subsection-heading">4.5 Pull-up and Pull-down Resistors</h3>
+                <p>Used in microcontrollers to maintain stable logic levels in digital circuits.</p>
+
+                <h2 class="section-heading">5. Testing of Resistors</h2>
+                <p>To ensure resistors function correctly, they must be tested using multimeters and other tools.</p>
+
+                <h3 class="subsection-heading">5.1 Measuring Resistance with a Digital Multimeter (DMM)</h3>
+                <p>Steps:</p>
+                <ol>
+                    <li>Set the DMM to resistance (Ω) mode.</li>
+                    <li>Connect the probes to both terminals of the resistor.</li>
+                    <li>Read the resistance value on the display.</li>
+                </ol>
+
+                <h3 class="subsection-heading">5.2 Continuity Testing</h3>
+                <p>For low-value resistors, continuity testing ensures electrical connection.</p>
+
+                <h3 class="subsection-heading">5.3 Checking for Faulty Resistors</h3>
+                <p><strong>Open Resistor:</strong> Displays infinite resistance (no current flow).</p>
+                <p><strong>Shorted Resistor:</strong> Shows nearly zero resistance (circuit fault).</p>
+                <p><strong>Drifted Resistor:</strong> The measured value deviates significantly from the nominal value, indicating damage.</p>
+
+                <h2 class="section-heading">6. Conclusion</h2>
+                <p>Resistors are indispensable in electronics, serving key roles in voltage regulation, current control, and signal processing. Understanding their identification, working principles, applications, and testing methods is crucial for effective circuit design and troubleshooting.</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

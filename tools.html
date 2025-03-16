@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study and Usage of Basic Engineering Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #2E86C1;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            color: #2E86C1;
+            font-size: 24px;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #2E86C1;
+            padding-bottom: 5px;
+        }
+
+        .subsection-heading {
+            color: #2E86C1;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2E86C1;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #1A5276;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #e6f4f9, #d1ebf5);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(46, 134, 193, 0.2);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(46, 134, 193, 0.3);
+        }
+        
+        .audio-title {
+            color: #2E86C1;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-title:before, .audio-title:after {
+            margin: 0 10px;
+        }
+        
+        audio {
+            width: 70%;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* Tool Card Styling */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .tool-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #2E86C1;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .tool-name {
+            color: #2E86C1;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .tool-image {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        /* Info box */
+        .info-box {
+            background-color: #e6f4f9;
+            border-left: 5px solid #2E86C1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info-title {
+            color: #2E86C1;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title:before {
+            content: "ℹ️";
+            margin-right: 10px;
+        }
+        
+        /* Warning box */
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title:before {
+            content: "⚠️";
+            margin-right: 10px;
+        }
+        
+        /* Maintenance Tips */
+        .maintenance-tips {
+            background-color: #f0f8ff;
+            border: 1px dashed #2E86C1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .maintenance-title {
+            color: #2E86C1;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .maintenance-title:before {
+            content: "🔧";
+            margin-right: 10px;
+        }
+        
+        /* Usage Tips */
+        .usage-tips {
+            background-color: #e8f5e9;
+            border: 1px dashed #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .usage-title {
+            color: #4caf50;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .usage-title:before {
+            content: "💡";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Experiments</a>
+        
+        <article class="article">
+            <h1 class="title">Study and Usage of Basic Engineering Tools</h1>
+
+            <div class="content">
+                <img src="tools.jpg" alt="Engineering Tools" class="image">
+                
+                <div class="audio-container">
+                    <h3 class="audio-title">Listen to Audio Explanation</h3>
+                    <audio controls>
+                        <source src="tools.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <h2 class="section-heading">Introduction</h2>
+                <p>Engineering tools are essential for performing various mechanical, electrical, and structural tasks. Proper understanding and usage of these tools ensure efficiency, precision, and safety in engineering work. This guide provides an in-depth study of commonly used engineering tools, including their functions, types, usage techniques, and maintenance. Understanding these tools will help engineers, technicians, and students perform their tasks with greater accuracy and effectiveness.</p>
+
+                <h2 class="section-heading">1. Pliers</h2>
+                
+                <h3 class="subsection-heading">1.1 Definition and Purpose</h3>
+                <p>Pliers are hand tools designed to grip, bend, twist, hold, or cut materials such as wires, cables, and small metal objects. They are commonly used in electrical work, mechanical repairs, and crafting applications.</p>
+                
+                <h3 class="subsection-heading">1.2 Types of Pliers</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3 class="tool-name">Combination Pliers</h3>
+                        <p>Multi-purpose pliers that can grip, twist, bend, and cut wires. They have a serrated jaw for a secure hold and a cutting edge for wire cutting.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Needle-nose Pliers</h3>
+                        <p>Long, narrow pliers ideal for reaching into tight spaces and bending small objects. Commonly used in electronics, jewelry making, and detailed mechanical work.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Lineman's Pliers</h3>
+                        <p>Heavy-duty pliers designed for cutting and twisting electrical wires. Often used by electricians for gripping and stripping wires.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Slip-joint Pliers</h3>
+                        <p>Adjustable pliers with a pivot that allows for different jaw openings, suitable for gripping various object sizes.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Locking Pliers (Vise-Grips)</h3>
+                        <p>Pliers that can be locked in place, providing a firm grip on objects, useful for holding parts while working.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Diagonal Cutting Pliers</h3>
+                        <p>Used primarily for cutting wires and small pins, ideal for electrical and electronic work.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Groove-joint Pliers (Channel Locks)</h3>
+                        <p>Adjustable pliers used for gripping large objects such as pipes and fittings.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">1.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Pliers Usage</div>
+                    <ul>
+                        <li>Select the right type of pliers for the job to prevent damage to materials.</li>
+                        <li>Hold the pliers firmly and apply steady pressure to avoid slipping.</li>
+                        <li>When cutting wires, position them near the joint for maximum leverage.</li>
+                        <li>Avoid using pliers as a substitute for wrenches or hammers to prevent tool damage.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">1.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Pliers Maintenance</div>
+                    <ul>
+                        <li>Keep pliers clean and dry to prevent rust and corrosion.</li>
+                        <li>Apply lubricating oil to the joints for smooth operation.</li>
+                        <li>Store pliers in a toolbox or hang them on a rack to avoid damage.</li>
+                    </ul>
+                </div>
+                
+
+                <h2 class="section-heading">2. Cutters</h2>
+                
+                <h3 class="subsection-heading">2.1 Definition and Purpose</h3>
+                <p>Cutters are tools designed for cutting wires, cables, and small metal parts. They come in various forms, depending on the material they are meant to cut.</p>
+                
+                <h3 class="subsection-heading">2.2 Types of Cutters</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3 class="tool-name">Diagonal Cutters</h3>
+                        <p>Angled cutting edges designed for cutting wires close to a surface.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">End Cutters</h3>
+                        <p>Flat-ended cutting edges used for flush cutting of nails and wires.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Cable Cutters</h3>
+                        <p>Used for cutting thick cables without fraying or distorting the strands.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Bolt Cutters</h3>
+                        <p>Heavy-duty cutters designed for cutting bolts, chains, padlocks, and rods.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Tin Snips</h3>
+                        <p>Used for cutting sheet metal and thin materials, available in straight, left, and right-cutting variations.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Wire Strippers</h3>
+                        <p>Specialized cutters designed for removing insulation from electrical wires without damaging the conductor inside.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">2.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Cutter Usage</div>
+                    <ul>
+                        <li>Use the correct cutter based on the material thickness and hardness.</li>
+                        <li>Apply force steadily to ensure a clean cut and avoid tool damage.</li>
+                        <li>Use bolt cutters for thick materials to prevent overloading smaller cutters.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">2.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Cutter Maintenance</div>
+                    <ul>
+                        <li>Regularly sharpen cutter blades for efficient cutting.</li>
+                        <li>Store in a dry place to prevent rust and corrosion.</li>
+                        <li>Wipe clean after use and apply light oil to the hinge for smooth operation.</li>
+                    </ul>
+                </div>
+                
+
+                <h2 class="section-heading">3. Wrenches/Spanners</h2>
+                
+                <h3 class="subsection-heading">3.1 Definition and Purpose</h3>
+                <p>Wrenches and spanners are tools used for gripping, fastening, and loosening nuts and bolts. They are essential in mechanical and plumbing work.</p>
+                
+                <h3 class="subsection-heading">3.2 Types of Wrenches/Spanners</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3 class="tool-name">Open-end Wrench</h3>
+                        <p>Has two open ends for gripping different-sized nuts and bolts.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Box-end Wrench</h3>
+                        <p>Encircles the bolt head for a firm grip, reducing slippage.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Adjustable Wrench</h3>
+                        <p>Features an adjustable jaw to fit various sizes of nuts and bolts.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Allen Wrench (Hex Key)</h3>
+                        <p>L-shaped tool used for hexagonal socket screws, commonly found in furniture assembly and bicycles.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Torque Wrench</h3>
+                        <p>Applies precise torque to fasteners, preventing over-tightening or under-tightening.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Pipe Wrench</h3>
+                        <p>Used for gripping and turning pipes in plumbing work.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Ratchet Wrench</h3>
+                        <p>Uses a ratcheting mechanism for fast tightening or loosening of bolts without removing the tool.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">3.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Wrench Usage</div>
+                    <ul>
+                        <li>Match the wrench size with the nut/bolt to prevent slipping and damage.</li>
+                        <li>Apply force steadily and avoid over-tightening.</li>
+                        <li>Use a torque wrench when precise force is required.</li>
+                        <li>Hold the wrench by the handle for maximum leverage and control.</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Wrench Safety</div>
+                    <ul>
+                        <li>Never use a wrench with damaged jaws or handles.</li>
+                        <li>Avoid using "cheater bars" to extend leverage, as this can damage the tool or fastener.</li>
+                        <li>Pull the wrench toward you rather than pushing away when possible.</li>
+                        <li>Ensure your hands and the wrench are clean and dry to prevent slipping.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">3.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Wrench Maintenance</div>
+                    <ul>
+                        <li>Keep wrenches clean and dry to prevent rust.</li>
+                        <li>Lubricate moving parts of adjustable wrenches for smooth operation.</li>
+                        <li>Store in an organized manner to avoid misplacement.</li>
+                    </ul>
+                </div>
+                
+
+                <h2 class="section-heading">4. Screwdrivers</h2>
+                
+                <h3 class="subsection-heading">4.1 Definition and Purpose</h3>
+                <p>Screwdrivers are hand tools used for driving or removing screws. They come in different types to match specific screw heads.</p>
+                
+                <h3 class="subsection-heading">4.2 Types of Screwdrivers</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3 class="tool-name">Flat-head Screwdriver</h3>
+                        <p>Used for slotted screws, commonly found in household applications.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Phillips Screwdriver</h3>
+                        <p>Designed for crosshead screws, reducing the chance of slipping.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Torx Screwdriver</h3>
+                        <p>Used for star-shaped screw heads, commonly found in electronics and automotive applications.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Precision Screwdriver</h3>
+                        <p>Used for small screws in electronics, watches, and eyeglasses.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Electric Screwdriver</h3>
+                        <p>Motorized for quick and efficient screw tightening or removal.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">4.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Screwdriver Usage</div>
+                    <ul>
+                        <li>Select the correct screwdriver type to prevent stripping screws.</li>
+                        <li>Apply firm but controlled pressure while turning.</li>
+                        <li>Hold the screwdriver handle firmly and turn with a steady motion.</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-title">Screwdriver Size Matching</div>
+                    <p>Always match the screwdriver tip size to the screw head:</p>
+                    <ul>
+                        <li>For flat-head screwdrivers, the tip should be the same width as the screw slot.</li>
+                        <li>For Phillips screwdrivers, use #0 for tiny screws, #1 for small screws, #2 for medium screws (most common), and #3 for large screws.</li>
+                        <li>For Torx screwdrivers, sizes range from T1 (smallest) to T40 (largest) for common applications.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">4.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Screwdriver Maintenance</div>
+                    <ul>
+                        <li>Keep screwdriver tips sharp and clean.</li>
+                        <li>Store in a dry place to prevent rust.</li>
+                        <li>Avoid using screwdrivers for prying or chiseling.</li>
+                    </ul>
+                </div>
+
+
+                <h2 class="section-heading">5. Drills</h2>
+                
+                <h3 class="subsection-heading">5.1 Definition and Purpose</h3>
+                <p>Drills are tools used to create holes in various materials such as wood, metal, and plastic.</p>
+                
+                <h3 class="subsection-heading">5.2 Types of Drills</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3 class="tool-name">Hand Drill</h3>
+                        <p>Operated manually for precision drilling.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Electric Drill</h3>
+                        <p>Powered by electricity for fast and efficient drilling.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Cordless Drill</h3>
+                        <p>Battery-operated for portability.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Hammer Drill</h3>
+                        <p>Used for drilling into concrete and masonry.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Drill Press</h3>
+                        <p>A stationary drill for precise drilling in heavy-duty applications.</p>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-title">Drill Bit Types</div>
+                    <p>Different materials require specific drill bit types:</p>
+                    <ul>
+                        <li><strong>Twist bits:</strong> General purpose for wood, plastic, and thin metal</li>
+                        <li><strong>Masonry bits:</strong> For concrete, brick, and stone</li>
+                        <li><strong>Spade bits:</strong> For making large holes in wood</li>
+                        <li><strong>Forstner bits:</strong> For clean, flat-bottomed holes in wood</li>
+                        <li><strong>Hole saws:</strong> For cutting large diameter holes</li>
+                        <li><strong>Step bits:</strong> For drilling thin metal and creating holes of various sizes</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">5.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Drill Usage</div>
+                    <ul>
+                        <li>Select the correct drill bit for the material to avoid breakage.</li>
+                        <li>Apply steady pressure without forcing the drill.</li>
+                        <li>Use a clamp to hold workpieces securely while drilling.</li>
+                        <li>Wear safety goggles to protect against debris.</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Drill Safety</div>
+                    <ul>
+                        <li>Always wear eye protection when drilling.</li>
+                        <li>Secure loose clothing, jewelry, and long hair before operating.</li>
+                        <li>Ensure the workpiece is properly secured before drilling.</li>
+                        <li>Never force a drill - if it's struggling, you may need a different bit or lower speed.</li>
+                        <li>Unplug electric drills before changing bits or performing maintenance.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">5.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Drill Maintenance</div>
+                    <ul>
+                        <li>Keep drill bits sharp and free of debris.</li>
+                        <li>Store in a dry place when not in use.</li>
+                        <li>Regularly check power cords and batteries for wear and tear.</li>
+                        <li>Clean dust and debris from ventilation slots to prevent overheating.</li>
+                        <li>Lubricate moving parts according to manufacturer recommendations.</li>
+                    </ul>
+                </div>
+                
+                
+                
+                <h2 class="section-heading">6. Measuring Tools</h2>
+                
+                <h3 class="subsection-heading">6.1 Definition and Purpose</h3>
+                <p>Measuring tools are essential for ensuring accuracy in engineering work. They help determine dimensions, angles, and other physical properties of objects.</p>
+                
+                <h3 class="subsection-heading">6.2 Types of Measuring Tools</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Tape Measure</h3>
+                        <p>Flexible ruler used for measuring length, width, and height.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Caliper</h3>
+                        <p>Precision tool for measuring internal and external dimensions with high accuracy.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Micrometer</h3>
+                        <p>Provides extremely precise measurements, often used in machining.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Level</h3>
+                        <p>Used to determine if a surface is horizontal (level) or vertical (plumb).</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Square</h3>
+                        <p>Used to verify right angles and mark perpendicular lines.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Protractor</h3>
+                        <p>Used for measuring and marking angles.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">6.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Measuring Tool Usage</div>
+                    <ul>
+                        <li>Ensure tools are calibrated before use for accurate measurements.</li>
+                        <li>Take multiple measurements to verify accuracy.</li>
+                        <li>Use the appropriate tool for the required precision level.</li>
+                        <li>Read measurements at eye level to avoid parallax errors.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">6.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Measuring Tool Maintenance</div>
+                    <ul>
+                        <li>Store in protective cases to prevent damage.</li>
+                        <li>Clean tools after use to remove dust and debris.</li>
+                        <li>Calibrate precision tools regularly.</li>
+                        <li>Apply light oil to metal parts to prevent rust.</li>
+                    </ul>
+                </div>
+                
+                
+                
+                <h2 class="section-heading">7. Hammers</h2>
+                
+                <h3 class="subsection-heading">7.1 Definition and Purpose</h3>
+                <p>Hammers are striking tools used for driving nails, fitting parts, breaking objects, and shaping metal.</p>
+                
+                <h3 class="subsection-heading">7.2 Types of Hammers</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Claw Hammer</h3>
+                        <p>General-purpose hammer with a flat striking face and a claw for removing nails.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Ball Peen Hammer</h3>
+                        <p>Used in metalworking for shaping metal and closing rivets.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Sledge Hammer</h3>
+                        <p>Heavy hammer used for demolition and driving stakes.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Mallet</h3>
+                        <p>Hammer with a head made of rubber, plastic, or wood, used to deliver force without damaging the struck surface.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">7.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Hammer Usage</div>
+                    <ul>
+                        <li>Grip the hammer near the end of the handle for maximum leverage.</li>
+                        <li>Strike with the face of the hammer parallel to the surface.</li>
+                        <li>Use a controlled swing, letting the weight of the hammer do the work.</li>
+                        <li>Select the appropriate hammer weight and type for the task.</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Hammer Safety</div>
+                    <ul>
+                        <li>Inspect the hammer head and handle for damage before use.</li>
+                        <li>Wear safety glasses to protect against flying debris.</li>
+                        <li>Never use a hammer with a loose or damaged handle.</li>
+                        <li>Avoid striking one hammer with another, as metal fragments may break off.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">7.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Hammer Maintenance</div>
+                    <ul>
+                        <li>Check for loose heads and tighten or replace as needed.</li>
+                        <li>Sand wooden handles to remove splinters.</li>
+                        <li>Clean the hammer head to remove dirt and debris.</li>
+                        <li>Store in a dry place to prevent rust and handle deterioration.</li>
+                    </ul>
+                </div>
+                
+                
+                
+                <h2 class="section-heading">8. Saws</h2>
+                
+                <h3 class="subsection-heading">8.1 Definition and Purpose</h3>
+                <p>Saws are cutting tools with toothed edges or blades, used for cutting various materials such as wood, metal, and plastic.</p>
+                
+                <h3 class="subsection-heading">8.2 Types of Saws</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Hand Saw</h3>
+                        <p>Manual saw with a wide blade for general cutting of wood.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Hacksaw</h3>
+                        <p>Fine-toothed saw used for cutting metal, plastic, and other hard materials.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        
+                        <h3 class="tool-name">Circular Saw</h3>
+                        <p>Power saw with a round blade that rotates to cut wood, plastic, or metal.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                      
+                        <h3 class="tool-name">Jigsaw</h3>
+                        <p>Power saw with a reciprocating blade for making curved or intricate cuts.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h3 class="tool-name">Miter Saw</h3>
+                        <p>Power saw used for making precise crosscuts and angle cuts.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-heading">8.3 Usage Techniques</h3>
+                <div class="usage-tips">
+                    <div class="usage-title">Proper Saw Usage</div>
+                    <ul>
+                        <li>Secure the material being cut to prevent movement.</li>
+                        <li>Use the appropriate saw and blade for the material.</li>
+                        <li>Let the saw do the work—avoid excessive force.</li>
+                        <li>For hand saws, cut on the forward stroke.</li>
+                        <li>For power saws, ensure the blade is at full speed before contacting the material.</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Saw Safety</div>
+                    <ul>
+                        <li>Always wear eye protection when using any saw.</li>
+                        <li>Keep hands away from the cutting path.</li>
+                        <li>Ensure power saws have proper guards in place.</li>
+                        <li>Disconnect power before changing blades or performing maintenance.</li>
+                        <li>Support large materials properly to prevent binding or kickback.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="subsection-heading">8.4 Maintenance</h3>
+                <div class="maintenance-tips">
+                    <div class="maintenance-title">Saw Maintenance</div>
+                    <ul>
+                        <li>Keep saw blades clean and sharp.</li>
+                        <li>Remove rust with fine steel wool and apply light oil.</li>
+                        <li>Check for damaged or missing teeth.</li>
+                        <li>For power saws, regularly inspect cords, switches, and safety features.</li>
+                        <li>Store saws in a dry place, with blade guards in place when applicable.</li>
+                    </ul>
+                </div>
+                
+                
+                <h2 class="section-heading">Conclusion</h2>
+                <p>Understanding the proper usage and maintenance of basic engineering tools is essential for efficiency, accuracy, and safety. By selecting the right tool and maintaining it properly, engineers and technicians can enhance their productivity and ensure the longevity of their tools.</p>
+                
+                <div class="info-box">
+                    <div class="info-title">Key Takeaways</div>
+                    <ul>
+                        <li>Always select the appropriate tool for the specific task.</li>
+                        <li>Follow proper usage techniques to prevent damage to tools and materials.</li>
+                        <li>Maintain tools regularly to ensure longevity and optimal performance.</li>
+                        <li>Prioritize safety by using personal protective equipment and following safety guidelines.</li>
+                        <li>Store tools properly to prevent damage and ensure easy access.</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <div class="warning-title">Remember</div>
+                    <p>A well-maintained tool is a safer tool. Regular inspection and proper care not only extend the life of your tools but also reduce the risk of accidents during use.</p>
+                </div>
+                
+                <h3 class="subsection-heading">Further Resources</h3>
+                <ul>
+                    <li>Tool Manufacturers' Websites for Specific Maintenance Guidelines</li>
+                    <li>Engineering Handbooks for Detailed Tool Applications</li>
+                    <li>Online Video Tutorials for Proper Tool Usage Techniques</li>
+                    <li>Professional Engineering Associations for Best Practices</li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
+
+
